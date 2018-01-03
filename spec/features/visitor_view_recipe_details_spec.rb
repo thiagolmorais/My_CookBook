@@ -9,6 +9,8 @@ feature 'Visitor view recipe details' do
                           ingredients: 'Farinha, açucar, cenoura',
                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
 
+
+
     # simula a ação do usuário
     visit root_path
     click_on recipe.title
