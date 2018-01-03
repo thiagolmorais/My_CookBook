@@ -4,31 +4,37 @@
 
 <div>
 <%= f.label :title, 'Título' %>
-<%= f.text_field :title %>
+<%= f.text_field :title, required: true %>
 </div>
 <div>
 <%= f.label :recipe_type, 'Tipo da Receita' %>
-<%= f.text_field :recipe_type %>
+<%= f.text_field :recipe_type, required: true %>
 </div>
 <div>
 <%= f.label :cuisine, 'Cozinha' %>
-<%= f.text_field :cuisine %>
+<%= f.text_field :cuisine, required: true %>
 </div>
 <div>
 <%= f.label :difficulty, 'Dificuldade' %>
-<%= f.text_field :difficulty %>
+<%= select_tag(:difficulty, options_for_select([['Fácil', 'Fácil'], ['Médio', 'Médio'], ['Difícil', 'Difícil']])) %>
 </div>
 <div>
 <%= f.label :cook_time, 'Tempo de Preparo' %>
-<%= f.text_field :cook_time %>
+<%= f.number_field :cook_time %>
+<%= f.label :cook_time, 'Minutos' %>
+</div>
+<div>
+<%= f.label :people_serve, 'Serve' %>
+<%= f.number_field :people_serve %>
+<%= f.label :cook_time, 'Pessoas' %>
 </div>
 <div>
 <%= f.label :ingredients, 'Ingredientes' %>
-<%= f.text_field :ingredients %>
+<%= f.text_field :ingredients, required: true %>
 </div>
 <div>
 <%= f.label :method, 'Como Preparar' %>
-<%= f.text_field :method %>
+<%= f.text_field :method, required: true %>
 </div>
 <div>
 <%= f.submit('Enviar') %>

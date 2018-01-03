@@ -15,11 +15,12 @@ class RecipesController < ApplicationController
     cuisine = params[:recipe][:cuisine]
     difficulty = params[:recipe][:difficulty]
     cook_time = params[:recipe][:cook_time]
+    people_serve = params[:recipe][:people_serve]
     ingredients = params[:recipe][:ingredients]
     method = params[:recipe][:method]
     r = Recipe.new(title: title, recipe_type: recipe_type,
        cuisine: cuisine, difficulty: difficulty, cook_time: cook_time,
-       ingredients: ingredients, method: method)
+       people_serve: people_serve, ingredients: ingredients, method: method)
     r.save
 
     redirect_to recipe_path(Recipe.last)
