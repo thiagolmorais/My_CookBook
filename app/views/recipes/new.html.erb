@@ -11,12 +11,12 @@
 <%= f.text_field :recipe_type, required: true %>
 </div>
 <div>
-<%= f.label :cuisine, 'Cozinha' %>
-<%= f.text_field :cuisine, required: true %>
+<%= f.label :cuisine_id, 'Cozinha' %>
+<%= f.collection_select :cuisine_id, @cuisines, :id, :name %>
 </div>
 <div>
 <%= f.label :difficulty, 'Dificuldade' %>
-<%= select_tag(:difficulty, options_for_select([['Fácil', 'Fácil'], ['Médio', 'Médio'], ['Difícil', 'Difícil']])) %>
+<%= f.text_field :difficulty, required: true%>
 </div>
 <div>
 <%= f.label :cook_time, 'Tempo de Preparo' %>
@@ -30,11 +30,11 @@
 </div>
 <div>
 <%= f.label :ingredients, 'Ingredientes' %>
-<%= f.text_field :ingredients, required: true %>
+<%= f.text_area :ingredients, required: true %>
 </div>
 <div>
 <%= f.label :method, 'Como Preparar' %>
-<%= f.text_field :method, required: true %>
+<%= f.text_area :method, required: true %>
 </div>
 <div>
 <%= f.submit('Enviar') %>
