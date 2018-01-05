@@ -1,5 +1,10 @@
 class RecipesController < ApplicationController
 
+  def index
+    @recipes = Recipe.all
+    @cuisines = Cuisine.all
+  end
+
   def show
     id = params[:id]
     @recipe = Recipe.find(id)

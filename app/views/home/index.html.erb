@@ -1,6 +1,15 @@
 <h1>CookBook</h1>
 <p>Bem-vindo ao maior livro de receitas online</p>
 
+<%= link_to 'Enviar uma receita', new_recipe_path %>
+
+
+<% @cuisines.each do |cuisine| %>
+  <h1><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
+<% end %>
+
+
+
 <% @recipes.each do |recipe| %>
   <h1><%= link_to recipe.title, recipe_path(recipe[:id])%></h1>
   <ul>
@@ -10,5 +19,3 @@
     <li><%= recipe.cook_time %> minutos</li>
   </ul>
 <% end %>
-
-<%= link_to 'Enviar uma receita', new_recipe_path %>
