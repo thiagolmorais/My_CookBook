@@ -3,12 +3,13 @@
 <%= form_for(@cuisine) do |f| %>
 
 <div>
-<%= f.label :name, 'Cozinha' %>
-<%= f.text_field :name, required: true %>
+<%= f.label :name, 'Nome' %>
+<%= f.text_field :name %>
 </div>
 <div>
 <%= f.submit('Enviar') %>
 </div>
 
-
 <% end %>
+<br>
+<alert><%= alert %><alert>

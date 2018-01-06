@@ -1,11 +1,9 @@
-
-
-
 <h1><%= @cuisine.name %></h1>
 
+ <% i = 0 %>
 <% @recipes.each do |recipe| %>
   <% if (recipe.cuisine.name == @cuisine.name) %>
-
+  <% i = i+1 %>
   <h1><%= link_to recipe.title, recipe_path(recipe[:id])%></h1>
   <ul>
     <li><%= recipe.recipe_type %></li>
@@ -13,7 +11,7 @@
     <li><%= recipe.difficulty %></li>
     <li><%= recipe.cook_time %> minutos</li>
   </ul>
-  <% else %>
-    Nenhuma receita encontrada para este tipo de cozinha
   <% end %>
 <% end %>
+
+<%= 'Nenhuma receita encontrada para este tipo de cozinha' if (i==0) %>

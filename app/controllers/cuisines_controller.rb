@@ -16,11 +16,19 @@ class CuisinesController < ApplicationController
   end
 
   def create
-    cuisine = params[:cuisine][:name]
-    c = Cuisine.new(name: cuisine)
-    c.save
+    cuisine_params = params.require(:cuisine).permit(:name)
+    @cuisine = Cuisine.new(cuisine_params)
 
-    redirect_to cuisine_path(Cuisine.last)
+    if (@cuisine.name == '')
+      #flash.now[:alert] = 'Você deve informar o nome da cozinha'
+      #flash.now[:alert] = 'Você deve informar o nome da cozinha'
+      #render action: 'new', alert: 'Você deve informar o nome da cozinha'
+      redirect_to new_cuisine_path, alert: 'Você deve informar o nome da cozinha'
+    else
+      @cuisine.save
+      redirect_to cuisine_path(Cuisine.last)
+    end
+
   end
 
 end
