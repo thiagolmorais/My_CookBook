@@ -20,7 +20,7 @@ class RecipeTypesController < ApplicationController
     @recipe_type = RecipeType.new(recipe_type_params)
 
     if (@recipe_type.name == '')
-      redirect_to new_recipe_type_path, alert: 'Você deve informar o tipo da receita'
+      redirect_to new_recipe_type_path, alert: 'Você deve informar o nome do tipo de receita'
     else
       @recipe_type.save
       redirect_to recipe_type_path(RecipeType.last)
