@@ -19,9 +19,13 @@ class RecipesController < ApplicationController
     recipe_params = params.require(:recipe).permit(:title, :recipe_type,
        :cuisine_id, :difficulty, :cook_time, :people_serve, :ingredients,:method)
     @recipe = Recipe.new(recipe_params)
-    @recipe.save
 
-    redirect_to recipe_path(Recipe.last)
+    if @recipe.save
+      redirect_to recipe_path(Recipe.last)
+    else
+      redirect_to new_recipe_path, alert: 'Você deve informar todos os dados da receita'
+    end
+
   end
 
 end

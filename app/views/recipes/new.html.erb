@@ -4,11 +4,11 @@
 
 <div>
 <%= f.label :title, 'Título' %>
-<%= f.text_field :title, required: true %>
+<%= f.text_field :title %>
 </div>
 <div>
 <%= f.label :recipe_type, 'Tipo da Receita' %>
-<%= f.text_field :recipe_type, required: true %>
+<%= f.text_field :recipe_type %>
 </div>
 <div>
 <%= f.label :cuisine_id, 'Cozinha' %>
@@ -16,7 +16,7 @@
 </div>
 <div>
 <%= f.label :difficulty, 'Dificuldade' %>
-<%= f.text_field :difficulty, required: true%>
+<%= f.text_field :difficulty %>
 </div>
 <div>
 <%= f.label :cook_time, 'Tempo de Preparo' %>
@@ -30,15 +30,15 @@
 </div>
 <div>
 <%= f.label :ingredients, 'Ingredientes' %>
-<%= f.text_area :ingredients, required: true %>
+<%= f.text_area :ingredients %>
 </div>
 <div>
 <%= f.label :method, 'Como Preparar' %>
-<%= f.text_area :method, required: true %>
+<%= f.text_area :method %>
 </div>
 <div>
 <%= f.submit('Enviar') %>
 </div>
-
-
 <% end %>
+<br>
+<%= alert %>

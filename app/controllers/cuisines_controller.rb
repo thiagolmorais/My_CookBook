@@ -20,9 +20,6 @@ class CuisinesController < ApplicationController
     @cuisine = Cuisine.new(cuisine_params)
 
     if (@cuisine.name == '')
-      #flash.now[:alert] = 'Você deve informar o nome da cozinha'
-      #flash.now[:alert] = 'Você deve informar o nome da cozinha'
-      #render action: 'new', alert: 'Você deve informar o nome da cozinha'
       redirect_to new_cuisine_path, alert: 'Você deve informar o nome da cozinha'
     else
       @cuisine.save
