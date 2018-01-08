@@ -1,3 +1,7 @@
+<%= render 'layouts/header' %>
+
+<div class="container">
+
 <h1><%= @recipe.title %></h1>
 
 <h3>Detalhes</h3>
@@ -14,3 +18,4 @@
 <p><%= @recipe.method %></p>
 
 <%= link_to 'Voltar', root_path %>
+</div>

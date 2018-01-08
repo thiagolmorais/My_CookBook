@@ -1,19 +1,27 @@
+<%= render 'layouts/header' %>
+
+<div class="container">
+
 <h1>CookBook</h1>
 <p>Bem-vindo ao maior livro de receitas online</p>
 
-<%= link_to 'Enviar uma receita', new_recipe_path %>
+<div class="row">
 
-
+  <div class="col-lg-4">
+  <p>Tipo<p>
 <% @recipe_types.each do |recipe_type| %>
   <h1><%= link_to recipe_type.name, recipe_type_path(recipe_type[:id])%></h1>
 <% end %>
 
+  <p>Tipo<p>
 <% @cuisines.each do |cuisine| %>
   <h1><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
 <% end %>
 
+  </div>
 
 
+  <div class="col-lg-4">
 <% @recipes.each do |recipe| %>
   <h1><%= link_to recipe.title, recipe_path(recipe[:id])%></h1>
   <ul>
@@ -23,3 +31,9 @@
     <li><%= recipe.cook_time %> minutos</li>
   </ul>
 <% end %>
+  </div>
+
+
+</div>
+</div>
+<%= render 'layouts/footer' %>

@@ -1,3 +1,6 @@
+<%= render 'layouts/header' %>
+
+<div class="container">
 <h1><%= @cuisine.name %></h1>
 
  <% i = 0 %>
@@ -15,3 +18,4 @@
 <% end %>
 
 <%= 'Nenhuma receita encontrada para este tipo de cozinha' if (i==0) %>
+</div>
