@@ -16,7 +16,6 @@ class RecipeTypesController < ApplicationController
   end
 
   def create
-    recipe_type_params = params.require(:recipe_type).permit(:name)
     @recipe_type = RecipeType.new(recipe_type_params)
     if @recipe_type.save
       redirect_to recipe_type_path(RecipeType.last)
@@ -25,6 +24,11 @@ class RecipeTypesController < ApplicationController
       render :new
     end
 
+  end
+
+  private
+  def recipe_type_params
+    params.require(:recipe_type).permit(:name)
   end
 
 end

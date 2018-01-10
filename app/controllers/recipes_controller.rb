@@ -17,8 +17,6 @@ class RecipesController < ApplicationController
   end
 
   def create
-    recipe_params = params.require(:recipe).permit(:title, :recipe_type_id,
-       :cuisine_id, :difficulty, :cook_time, :people_serve, :ingredients,:method)
     @recipe = Recipe.new(recipe_params)
 
     if @recipe.save
@@ -42,8 +40,6 @@ class RecipesController < ApplicationController
   def update
     id = params[:id]
     @recipe = Recipe.find(id)
-    recipe_params = params.require(:recipe).permit(:title, :recipe_type_id,
-       :cuisine_id, :difficulty, :cook_time, :people_serve, :ingredients,:method)
     if @recipe.update(recipe_params)
       redirect_to recipe_path(@recipe.id)
     else
@@ -52,6 +48,13 @@ class RecipesController < ApplicationController
       flash.now[:error] = 'Você deve informar todos os dados da receita'
       render partial: 'form'
     end
+  end
+
+  private
+  def recipe_params
+    params.require(:recipe).permit(:title, :recipe_type_id,
+                                   :cuisine_id, :difficulty, :cook_time,
+                                   :people_serve, :ingredients,:method)
   end
 
 end
