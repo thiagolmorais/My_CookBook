@@ -4,6 +4,9 @@
 
 <h1>Cadastrar um Tipo de Receita</h1>
 
+<br>
+<%= flash[:error] %>
+<br>
 <%= form_for(@recipe_type) do |f| %>
 
 <div>
@@ -15,6 +18,5 @@
 </div>
 
 <% end %>
-<br>
-<alert><%= alert %><alert>
+
 </div>

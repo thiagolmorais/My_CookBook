@@ -4,6 +4,11 @@
 
 <h1>Cadastrar uma Cozinha</h1>
 
+
+<br>
+<%= flash[:error] %>
+<br>
+
 <%= form_for(@cuisine) do |f| %>
 
 <div>
@@ -15,6 +20,4 @@
 </div>
 
 <% end %>
-<br>
-<alert><%= alert %><alert>
 </div>

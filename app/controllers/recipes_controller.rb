@@ -24,7 +24,10 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(Recipe.last)
     else
-      redirect_to new_recipe_path, alert: 'Você deve informar todos os dados da receita'
+      @recipe_type = RecipeType.all
+      @cuisines = Cuisine.all
+      flash.now[:error] = 'Você deve informar todos os dados da receita'
+      render partial: 'form'
     end
 
   end
@@ -44,7 +47,10 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to recipe_path(@recipe.id)
     else
-      redirect_to new_recipe_path, alert: 'Você deve informar todos os dados da receita'
+      @recipe_type = RecipeType.all
+      @cuisines = Cuisine.all
+      flash.now[:error] = 'Você deve informar todos os dados da receita'
+      render partial: 'form'
     end
   end
 
