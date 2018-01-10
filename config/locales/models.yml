@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    model:
+      cuisine:
+        one: Cozinha
+        other: Cozinhas
+      recipe:
+        one: Receita
+        other: Receitas
+      recipe_Type:
+        one: Tipo de Receitas
+        other: Tipos de Receitas

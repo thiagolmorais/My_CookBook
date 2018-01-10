@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    attributes:
+      recipe:
+        title: 'Título'
+        recipe_type_id: 'Tipo da Receita'
+        cuisine_id: 'Cozinha'
+        difficulty: 'Dificuldade'
+        cook_time: 'Tempo de Preparo'
+        people_serve: 'Serve quantas pessoas'
+        ingredients: 'Ingredientes'
+        method: 'Como Preparar'
+      recipe_type:
+        name: 'Nome'
+      cuisine:
+        name: 'Nome'
