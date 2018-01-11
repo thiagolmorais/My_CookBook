@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
       @recipe_type = RecipeType.all
       @cuisines = Cuisine.all
       flash.now[:error] = 'Você deve informar todos os dados da receita'
-      render partial: 'form'
+      render :new
     end
 
   end
@@ -46,8 +46,13 @@ class RecipesController < ApplicationController
       @recipe_type = RecipeType.all
       @cuisines = Cuisine.all
       flash.now[:error] = 'Você deve informar todos os dados da receita'
-      render partial: 'form'
+      render :edit
     end
+  end
+
+  def search
+    @term = params[:term]
+    @recipes = Recipe.where(title: @term)
   end
 
   private
