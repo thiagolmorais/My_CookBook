@@ -14,3 +14,6 @@ pt-BR:
         name: 'Nome'
       cuisine:
         name: 'Nome'
+      user:
+        email: 'Email'
+        password: 'Senha'

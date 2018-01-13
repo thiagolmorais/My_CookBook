@@ -2,6 +2,8 @@
 
 <div class="container">
 
+<p><%= "Bem-vindo #{current_user.email}" if user_signed_in? %></p> 
+
 <h1>CookBook</h1>
 <p>Bem-vindo ao maior livro de receitas online</p>
 

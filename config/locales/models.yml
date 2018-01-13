@@ -10,3 +10,6 @@ pt-BR:
       recipe_Type:
         one: Tipo de Receitas
         other: Tipos de Receitas
+      user:
+        one: Usuário
+        other: Usuários
