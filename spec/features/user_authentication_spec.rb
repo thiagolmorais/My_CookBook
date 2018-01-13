@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User login' do
   scenario 'sucess' do
-    user = User.create(email: 'tf_lima@terra.com.br', password: '123456789')
+    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
 
 
     visit root_path
@@ -14,7 +14,7 @@ feature 'User login' do
       click_on 'Entrar'
     end
 
-    expect(page).to have_content("Bem-vindo #{user.email}")
+    expect(page).to have_content("Bem-vindo #{user.username}")
     expect(page).not_to have_link('Entrar')
 
   end
