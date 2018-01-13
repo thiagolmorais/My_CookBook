@@ -10,6 +10,7 @@ pt-BR:
         people_serve: 'Serve quantas pessoas'
         ingredients: 'Ingredientes'
         method: 'Como Preparar'
+        user_id: 'Usuário'
       recipe_type:
         name: 'Nome'
       cuisine:

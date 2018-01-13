@@ -3,12 +3,19 @@ require 'rails_helper'
 feature 'Visitor register recipe' do
   scenario 'successfully' do
     #cria os dados necessários
+    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
     Cuisine.create(name: 'Arabe')
     RecipeType.create(name: 'Entrada')
     RecipeType.create(name: 'Prato Principal')
     RecipeType.create(name: 'Sobremesa')
     # simula a ação do usuário
     visit root_path
+    click_on 'Entrar'
+    fill_in 'Email', with: user.email
+    fill_in 'Senha', with: user.password
+    within('div.actions') do
+      click_on 'Entrar'
+    end
     click_on 'Enviar uma receita'
 
     fill_in 'Título', with: 'Tabule'
@@ -35,9 +42,16 @@ feature 'Visitor register recipe' do
 
   scenario 'and must fill in all fields' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
+    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
     Cuisine.create(name: 'Arabe')
     # simula a ação do usuário
     visit root_path
+    click_on 'Entrar'
+    fill_in 'Email', with: user.email
+    fill_in 'Senha', with: user.password
+    within('div.actions') do
+      click_on 'Entrar'
+    end
     click_on 'Enviar uma receita'
 
     fill_in 'Título', with: ''
@@ -50,4 +64,38 @@ feature 'Visitor register recipe' do
 
     expect(page).to have_content('Você deve informar todos os dados da receita')
   end
+
+  scenario 'recipe withe author' do
+    #cria os dados necessários, nesse caso não vamos criar dados no banco
+    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
+    Cuisine.create(name: 'Arabe')
+    RecipeType.create(name: 'Entrada')
+    # simula a ação do usuário
+    visit root_path
+
+    click_on 'Entrar'
+    fill_in 'Email', with: user.email
+    fill_in 'Senha', with: user.password
+    within('div.actions') do
+      click_on 'Entrar'
+    end
+
+    click_on 'Enviar uma receita'
+    fill_in 'Título', with: 'Tabule'
+    select 'Arabe', from: 'Cozinha'
+    select 'Entrada', from: 'Tipo da Receita'
+    fill_in 'Dificuldade', with: 'Fácil'
+    fill_in 'Tempo de Preparo', with: '45'
+    fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha'
+    fill_in 'Como Preparar', with: 'Misturar tudo e servir. Adicione limão a gosto.'
+    click_on 'Enviar'
+    click_on 'Voltar'
+    click_on 'Tabule'
+
+    expect(page).to have_content("Enviada por #{user.username}")
+
+  end
+
+
+
 end

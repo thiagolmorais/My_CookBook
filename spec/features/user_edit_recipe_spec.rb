@@ -3,6 +3,8 @@ require 'rails_helper'
 feature 'User update recipe' do
   scenario 'successfully' do
     #cria os dados necessários
+    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
+    id = user.id
     arabian_cuisine = Cuisine.create(name: 'Arabe')
     brazilian_cuisine = Cuisine.create(name: 'Brasileira')
 
@@ -14,10 +16,17 @@ feature 'User update recipe' do
                           cuisine: arabian_cuisine, difficulty: 'Médio',
                           cook_time: 50,
                           ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
 
     # simula a ação do usuário
     visit root_path
+    click_on 'Entrar'
+    fill_in 'Email', with: user.email
+    fill_in 'Senha', with: user.password
+
+    within('div.actions') do
+      click_on 'Entrar'
+    end
     click_on 'Bolodecenoura'
     click_on 'Editar'
 
@@ -43,6 +52,8 @@ feature 'User update recipe' do
 
   scenario 'and all fields must be filled' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
+    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
+    id = user.id
     arabian_cuisine = Cuisine.create(name: 'Arabe')
     brazilian_cuisine = Cuisine.create(name: 'Brasileira')
 
@@ -54,10 +65,17 @@ feature 'User update recipe' do
                           cuisine: arabian_cuisine, difficulty: 'Médio',
                           cook_time: 50,
                           ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
 
     # simula a ação do usuário
     visit root_path
+    click_on 'Entrar'
+    fill_in 'Email', with: user.email
+    fill_in 'Senha', with: user.password
+
+    within('div.actions') do
+      click_on 'Entrar'
+    end
     click_on 'Bolodecenoura'
     click_on 'Editar'
 

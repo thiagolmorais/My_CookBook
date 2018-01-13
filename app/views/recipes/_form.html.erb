@@ -36,6 +36,11 @@
 <%= f.label :method %>
 <%= f.text_area :method %>
 </div>
+<div class="hide">
+<%= f.label :user_id %>
+<%= f.text_field :user_id, value: current_user.id %>
+</div>
+
 <div>
 <%= f.submit('Enviar') %>
 </div>

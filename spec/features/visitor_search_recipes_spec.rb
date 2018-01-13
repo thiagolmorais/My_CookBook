@@ -3,6 +3,8 @@ require 'rails_helper'
 feature 'Visitor search for recipes' do
   scenario 'from home page' do
     # cria os dados necessários previamente
+    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
+    id = user.id
     cuisine = Cuisine.create(name: 'Brasileira')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     another_recipe_type = RecipeType.create(name: 'Entrada')
@@ -11,13 +13,13 @@ feature 'Visitor search for recipes' do
                            cuisine: cuisine, difficulty: 'Médio',
                            cook_time: 60,
                            ingredients: 'Farinha, açucar, cenoura',
-                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
 
     another_recipe = Recipe.create(title: 'Salada de cenoura', recipe_type: another_recipe_type,
                            cuisine: cuisine, difficulty: 'Facil',
                            cook_time: 60,
                            ingredients: 'Cenoura e legumes',
-                           method: 'Cozinhe a cenoura, misture com os legumes')
+                           method: 'Cozinhe a cenoura, misture com os legumes', user_id: id)
 
     # simula a ação do usuário
     visit root_path
@@ -36,6 +38,8 @@ feature 'Visitor search for recipes' do
 
   scenario 'and navigate to recipe details' do
     # cria os dados necessários previamente
+    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
+    id = user.id
     cuisine = Cuisine.create(name: 'Brasileira')
     recipe_type = RecipeType.create(name: 'Sobremesa')
 
@@ -43,7 +47,7 @@ feature 'Visitor search for recipes' do
                            cuisine: cuisine, difficulty: 'Médio',
                            cook_time: 60,
                            ingredients: 'Farinha, açucar, cenoura',
-                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
 
     # simula a ação do usuário
     visit root_path

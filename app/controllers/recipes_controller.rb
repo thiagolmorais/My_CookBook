@@ -14,6 +14,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
     @cuisines = Cuisine.all
     @recipe_type = RecipeType.all
+    @users = User.all
   end
 
   def create
@@ -57,9 +58,10 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
+    user_id = User
     params.require(:recipe).permit(:title, :recipe_type_id,
                                    :cuisine_id, :difficulty, :cook_time,
-                                   :people_serve, :ingredients,:method)
+                                   :people_serve, :ingredients,:method, :user_id)
   end
 
 end
