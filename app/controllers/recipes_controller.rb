@@ -60,6 +60,19 @@ class RecipesController < ApplicationController
     @recipes = Recipe.where(title: @term)
   end
 
+  def destroy
+    id = params[:id]
+    @recipe = Recipe.find(id)
+    if (current_user == @recipe.user)
+      @recipe.destroy
+      flash[:sucess] = 'Receita excluída com sucesso!'
+      redirect_to root_path
+    else
+      flash[:error] = 'Você não pode excluir receitas enviadas por outros usuários.'
+      redirect_to root_path
+    end
+  end
+
   private
   def recipe_params
     user_id = User

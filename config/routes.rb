@@ -2,10 +2,10 @@ Rails.application.routes.draw do
 
   devise_for :users
    root to: 'home#index'
-   resources :recipes, only: [:index, :show, :new, :create, :edit, :update] do
+   resources :recipes, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
      collection do
        get 'search'
-     end 
+     end
    end
 
    resources :cuisines, only: [:index, :show, :new, :create]

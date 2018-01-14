@@ -23,6 +23,9 @@
     <%= link_to 'Editar', edit_recipe_path if (current_user == @recipe.user) %>
 </div>
 <div>
+    <%= link_to 'Excluir Receita', @recipe, method: :delete if (current_user == @recipe.user) %>
+</div>
+<div>
 <%= link_to 'Voltar', root_path %>
 </div>
 </div>
