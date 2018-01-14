@@ -14,7 +14,9 @@ feature 'Visitor view recipe details' do
 
     # simula a ação do usuário
     visit root_path
-    click_on recipe.title
+    within('div.last_recipes') do
+      click_on  recipe.title
+    end
 
     # expectativas do usuário após a ação
     expect(page).to have_css('h1', text: recipe.title)
@@ -43,7 +45,9 @@ feature 'Visitor view recipe details' do
 
     # simula a ação do usuário
     visit root_path
-    click_on recipe.title
+    within('div.last_recipes') do
+      click_on  recipe.title
+    end
     click_on 'Voltar'
 
     # expectativa da rota atual

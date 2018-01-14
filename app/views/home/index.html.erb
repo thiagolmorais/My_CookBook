@@ -18,7 +18,7 @@
   <h1><%= link_to recipe_type.name, recipe_type_path(recipe_type[:id])%></h1>
 <% end %>
 
-  <p>Tipo<p>
+  <p>Cozinha<p>
 <% @cuisines.each do |cuisine| %>
   <h1><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
 <% end %>
@@ -27,15 +27,34 @@
 
 
   <div class="col-lg-4">
-<% @recipes.each do |recipe| %>
-  <h1><%= link_to recipe.title, recipe_path(recipe[:id])%></h1>
-  <ul>
-    <li><%= recipe.recipe_type.name %></li>
-    <li><%= recipe.cuisine.name %></li>
-    <li><%= recipe.difficulty %></li>
-    <li><%= recipe.cook_time %> minutos</li>
-  </ul>
-<% end %>
+    <div class="last_recipes">
+    <h1>Últimas Receitas<h1>
+
+      <% @last_recipes.each do |recipe| %>
+        <h1><%= link_to recipe.title, recipe_path(recipe[:id])%></h1>
+        <ul>
+          <li><%= recipe.recipe_type.name %></li>
+          <li><%= recipe.cuisine.name %></li>
+          <li><%= recipe.difficulty %></li>
+          <li><%= recipe.cook_time %> minutos</li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div id="favorite" class="col-lg-4">
+    <h1>Minhas Receitas<h1>
+
+    <% @recipes.each do |recipe| %>
+      <h1><%= link_to recipe.title, recipe_path(recipe[:id])%></h1>
+      <ul>
+        <li><%= recipe.recipe_type.name %></li>
+        <li><%= recipe.cuisine.name %></li>
+        <li><%= recipe.difficulty %></li>
+        <li><%= recipe.cook_time %> minutos</li>
+      </ul>
+    <% end %>
   </div>
 
 

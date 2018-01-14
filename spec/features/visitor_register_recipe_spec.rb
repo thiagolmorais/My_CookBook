@@ -90,7 +90,9 @@ feature 'Visitor register recipe' do
     fill_in 'Como Preparar', with: 'Misturar tudo e servir. Adicione limão a gosto.'
     click_on 'Enviar'
     click_on 'Voltar'
-    click_on 'Tabule'
+    within('div.last_recipes') do
+      click_on 'Tabule'
+    end
 
     expect(page).to have_content("Enviada por #{user.username}")
 

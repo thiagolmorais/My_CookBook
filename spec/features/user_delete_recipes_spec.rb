@@ -22,7 +22,9 @@ feature 'user delete recipes' do
     within('div.actions') do
       click_on 'Entrar'
     end
-    click_on recipe.title
+    within('div.last_recipes') do
+      click_on recipe.title
+    end
     click_on 'Excluir Receita'
 
     expect(page).to have_content 'Receita excluída com sucesso!'

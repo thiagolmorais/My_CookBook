@@ -27,7 +27,9 @@ feature 'User update recipe' do
     within('div.actions') do
       click_on 'Entrar'
     end
-    click_on 'Bolodecenoura'
+    within('div.last_recipes') do
+      click_on 'Bolodecenoura'
+    end
     click_on 'Editar'
 
     fill_in 'Título', with: 'Bolo de cenoura'
@@ -76,7 +78,9 @@ feature 'User update recipe' do
     within('div.actions') do
       click_on 'Entrar'
     end
-    click_on 'Bolodecenoura'
+    within('div.last_recipes') do
+      click_on 'Bolodecenoura'
+    end
     click_on 'Editar'
 
     fill_in 'Título', with: ''
@@ -109,7 +113,9 @@ feature 'User update recipe' do
     within('div.actions') do
       click_on 'Entrar'
     end
-    click_on 'Bolodecenoura'
+    within('div.last_recipes') do
+      click_on 'Bolodecenoura'
+    end
 
     expect(page).to have_link('Editar')
   end
@@ -166,8 +172,10 @@ feature 'User update recipe' do
     within('div.actions') do
       click_on 'Entrar'
     end
-    click_on 'Bolodecenoura'
-
+    within('div.last_recipes') do
+      click_on 'Bolodecenoura'
+    end
+    
     expect(page).not_to have_link('Editar')
   end
 
