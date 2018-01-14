@@ -89,4 +89,86 @@ feature 'User update recipe' do
 
     expect(page).to have_content('Você deve informar todos os dados da receita')
   end
+
+  scenario 'edit only user user_signed_in' do
+    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
+    id = user.id
+    cuisine = Cuisine.create(name: 'Arabe')
+    type = RecipeType.create(name: 'Prato Principal')
+    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: type,
+                          cuisine: cuisine, difficulty: 'Médio',
+                          cook_time: 50,
+                          ingredients: 'Farinha, açucar, cenoura',
+                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
+
+    visit root_path
+    click_on 'Entrar'
+    fill_in 'Email', with: user.email
+    fill_in 'Senha', with: user.password
+
+    within('div.actions') do
+      click_on 'Entrar'
+    end
+    click_on 'Bolodecenoura'
+
+    expect(page).to have_link('Editar')
+  end
+
+  scenario 'not edit by outher user' do
+
+    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
+    id = user.id
+    cuisine = Cuisine.create(name: 'Arabe')
+    type = RecipeType.create(name: 'Prato Principal')
+
+    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: type,
+                          cuisine: cuisine, difficulty: 'Médio',
+                          cook_time: 50,
+                          ingredients: 'Farinha, açucar, cenoura',
+                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
+
+    another_user = User.create(username: 'João', email: 'joao@terra.com.br', password: '123456')
+
+    visit root_path
+    click_on 'Entrar'
+    fill_in 'Email', with: another_user.email
+    fill_in 'Senha', with: another_user.password
+
+    within('div.actions') do
+      click_on 'Entrar'
+    end
+    visit edit_recipe_path(recipe.id)
+
+    expect(page).to have_current_path(root_path)
+    expect(page).to have_content('Você não pode editar receitas enviadas por outros usuários.')
+  end
+
+  scenario 'not fill edit' do
+
+    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
+    id = user.id
+    cuisine = Cuisine.create(name: 'Arabe')
+    type = RecipeType.create(name: 'Prato Principal')
+
+    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: type,
+                          cuisine: cuisine, difficulty: 'Médio',
+                          cook_time: 50,
+                          ingredients: 'Farinha, açucar, cenoura',
+                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
+
+    another_user = User.create(username: 'João', email: 'joao@terra.com.br', password: '123456')
+
+    visit root_path
+    click_on 'Entrar'
+    fill_in 'Email', with: another_user.email
+    fill_in 'Senha', with: another_user.password
+
+    within('div.actions') do
+      click_on 'Entrar'
+    end
+    click_on 'Bolodecenoura'
+
+    expect(page).not_to have_link('Editar')
+  end
+
 end

@@ -2,7 +2,9 @@
 
 <div class="container">
 
-<p><%= "Bem-vindo #{current_user.username}" if user_signed_in? %></p> 
+<p><%= "Bem-vindo #{current_user.username}" if user_signed_in? %></p>
+<br>
+<%= flash[:error] %>
 
 <h1>CookBook</h1>
 <p>Bem-vindo ao maior livro de receitas online</p>

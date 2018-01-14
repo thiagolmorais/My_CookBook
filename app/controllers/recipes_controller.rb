@@ -36,6 +36,10 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(id)
     @cuisines = Cuisine.all
     @recipe_type = RecipeType.all
+    if (current_user.id != @recipe.user_id)
+      flash[:error] = 'Você não pode editar receitas enviadas por outros usuários.'
+      redirect_to root_path
+    end
   end
 
   def update
