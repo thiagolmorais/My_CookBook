@@ -8,7 +8,7 @@ class RecipesController < ApplicationController
   def show
     id = params[:id]
     @recipe = Recipe.find(id)
-    @favorite = Favorite.all
+    @favorites = Favorite.all
   end
 
   def new

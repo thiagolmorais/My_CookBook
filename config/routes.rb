@@ -10,5 +10,5 @@ Rails.application.routes.draw do
 
    resources :cuisines, only: [:index, :show, :new, :create]
    resources :recipe_types, only: [:index, :show, :new, :create]
-   resources :favorites, only: [:index, :create]
+   resources :favorites, only: [:index, :create, :destroy]
 end
