@@ -28,6 +28,6 @@ class CuisinesController < ApplicationController
   private
   def cuisine_params
     params.require(:cuisine).permit(:name)
-  end 
+  end
 
 end
