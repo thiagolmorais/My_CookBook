@@ -3,23 +3,12 @@ require 'rails_helper'
 feature 'Visitor search for recipes' do
   scenario 'from home page' do
     # cria os dados necessários previamente
-    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
-    id = user.id
-    cuisine = Cuisine.create(name: 'Brasileira')
-    recipe_type = RecipeType.create(name: 'Sobremesa')
-    another_recipe_type = RecipeType.create(name: 'Entrada')
 
-    recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                           cuisine: cuisine, difficulty: 'Médio',
-                           cook_time: 60,
-                           ingredients: 'Farinha, açucar, cenoura',
-                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
-
-    another_recipe = Recipe.create(title: 'Salada de cenoura', recipe_type: another_recipe_type,
-                           cuisine: cuisine, difficulty: 'Facil',
-                           cook_time: 60,
-                           ingredients: 'Cenoura e legumes',
-                           method: 'Cozinhe a cenoura, misture com os legumes', user_id: id)
+    user = create(:user)
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    recipe = create(:recipe, title: 'Bolo de cenoura', cuisine: cuisine, recipe_type: recipe_type, user: user)
+    another_recipe = create(:recipe, title: 'Salada de cenoura', cuisine: cuisine, recipe_type: recipe_type, user: user)
 
     # simula a ação do usuário
     visit root_path
@@ -38,16 +27,8 @@ feature 'Visitor search for recipes' do
 
   scenario 'and navigate to recipe details' do
     # cria os dados necessários previamente
-    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
-    id = user.id
-    cuisine = Cuisine.create(name: 'Brasileira')
-    recipe_type = RecipeType.create(name: 'Sobremesa')
 
-    recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                           cuisine: cuisine, difficulty: 'Médio',
-                           cook_time: 60,
-                           ingredients: 'Farinha, açucar, cenoura',
-                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
+    create(:recipe)
 
     # simula a ação do usuário
     visit root_path
