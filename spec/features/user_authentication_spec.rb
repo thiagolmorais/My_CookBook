@@ -22,9 +22,9 @@ feature 'User login' do
   scenario 'sign out' do
     user = create(:user)
 
-    login_as(user, :scope => :user)
+    login_as(user)
     visit root_path
-    
+
     visit root_path
     click_on 'Sair'
 

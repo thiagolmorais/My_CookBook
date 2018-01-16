@@ -1,49 +1,58 @@
-<br>
-<%= flash[:error] %>
-<br>
+  <br>
+  <%= flash[:error] %>
+  <br>
 
-<%= form_for(@recipe) do |f| %>
+  <%= form_for(@recipe) do |f| %>
 
-<div>
-<%= f.label :title %>
-<%= f.text_field :title %>
-</div>
-<div>
-<%= f.label :recipe_type_id %>
-<%= f.collection_select :recipe_type_id, @recipe_type, :id, :name %>
-</div>
-<div>
-<%= f.label :cuisine_id %>
-<%= f.collection_select :cuisine_id, @cuisines, :id, :name %>
-</div>
-<div>
-<%= f.label :difficulty %>
-<%= f.text_field :difficulty %>
-</div>
-<div>
-<%= f.label :cook_time %>
-<%= f.number_field :cook_time %>
-</div>
-<div>
-<%= f.label :people_serve %>
-<%= f.number_field :people_serve %>
-</div>
-<div>
-<%= f.label :ingredients %>
-<%= f.text_area :ingredients %>
-</div>
-<div>
-<%= f.label :method %>
-<%= f.text_area :method %>
-</div>
-<div class="hide">
-<%= f.label :user_id %>
-<%= f.text_field :user_id, value: current_user.id %>
-</div>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
 
-<div>
-<%= f.submit('Enviar') %>
-</div>
-<% end %>
+  <div>
+    <%= f.label :recipe_type_id %>
+    <%= f.collection_select :recipe_type_id, @recipe_type, :id, :name %>
+  </div>
+
+  <div>
+    <%= f.label :cuisine_id %>
+    <%= f.collection_select :cuisine_id, @cuisines, :id, :name %>
+  </div>
+
+  <div>
+    <%= f.label :difficulty %>
+    <%= f.text_field :difficulty %>
+  </div>
+
+  <div>
+    <%= f.label :cook_time %>
+    <%= f.number_field :cook_time %>
+  </div>
+
+  <div>
+    <%= f.label :people_serve %>
+    <%= f.number_field :people_serve %>
+  </div>
+
+  <div>
+    <%= f.label :ingredients %>
+    <%= f.text_area :ingredients %>
+  </div>
+
+  <div>
+    <%= f.label :method %>
+    <%= f.text_area :method %>
+  </div>
+
+  <div class="hide">
+    <%= f.label :user_id %>
+    <%= f.text_field :user_id, value: current_user.id %>
+  </div>
+
+  <div>
+    <%= f.submit('Enviar') %>
+  </div>
+
+    <% end %>
 
 </div>

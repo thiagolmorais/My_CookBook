@@ -1,34 +1,32 @@
-<%= render 'layouts/header' %>
-
 <div class="container">
-<br>
-<p><%= flash[:sucess] %></p>
-<br>
-<h1><%= @recipe.title %></h1>
+  <br>
+  <p><%= flash[:sucess] %></p>
+  <br>
+  <h1><%= @recipe.title %></h1>
 
-<h3>Detalhes</h3>
-<p><%= @recipe.recipe_type.name %></p>
-<p><%= @recipe.cuisine.name %></p>
-<p><%= @recipe.difficulty %></p>
-<p><%= @recipe.cook_time %> minutos</p>
-<p><%= @recipe.people_serve %></p>
+  <h3>Detalhes</h3>
+  <p><%= @recipe.recipe_type.name %></p>
+  <p><%= @recipe.cuisine.name %></p>
+  <p><%= @recipe.difficulty %></p>
+  <p><%= @recipe.cook_time %> minutos</p>
+  <p><%= @recipe.people_serve %></p>
 
-<h3>Ingredientes</h3>
-<p><%= @recipe.ingredients %></p>
+  <h3>Ingredientes</h3>
+  <p><%= @recipe.ingredients %></p>
 
-<h3>Como Preparar</h3>
-<p><%= @recipe.method %></p>
+  <h3>Como Preparar</h3>
+  <p><%= @recipe.method %></p>
 
-<p><%= "Enviada por #{@recipe.user.username}" %></p>
+  <p><%= "Enviada por #{@recipe.user.username}" %></p>
 
-<div>
-  <% control = 0 %>
-  <% @favorites.each do |favorite| %>
-    <% if (favorite.control == "#{@recipe.id}#{current_user.id}")%>
-      <% control += 1 %>
-      <% @f = favorite %>
+  <div>
+    <% control = 0 %>
+    <% @favorites.each do |favorite| %>
+      <% if (favorite.control == "#{@recipe.id}#{current_user.id}")%>
+        <% control += 1 %>
+        <% @f = favorite %>
+      <% end %>
     <% end %>
-  <% end %>
 
     <% if control == 0 %>
       <%= link_to 'Salvar como Favorita', favorites_path(recipe_id: @recipe.id, user_id: current_user.id), method: :post if user_signed_in? %>
@@ -36,15 +34,18 @@
       <%= link_to 'Excluir das Favoritas', favorite_path(@f.id), method: :delete if user_signed_in? %>
     <% end %>
 
-</div>
+  </div>
 
-<div>
+  <div>
     <%= link_to 'Editar', edit_recipe_path if (current_user == @recipe.user) %>
-</div>
-<div>
+  </div>
+
+  <div>
     <%= link_to 'Excluir Receita', @recipe, method: :delete if (current_user == @recipe.user) %>
-</div>
-<div>
-<%= link_to 'Voltar', root_path %>
-</div>
+  </div>
+
+  <div>
+    <%= link_to 'Voltar', root_path %>
+  </div>
+  
 </div>

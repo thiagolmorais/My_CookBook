@@ -1,23 +1,19 @@
-<%= render 'layouts/header' %>
-
 <div class="container">
 
-<h1>Cadastrar uma Cozinha</h1>
+  <h1>Cadastrar uma Cozinha</h1>
+  <br>
+  <%= flash[:error] %>
+  <br>
 
+  <%= form_for(@cuisine) do |f| %>
 
-<br>
-<%= flash[:error] %>
-<br>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.submit('Enviar') %>
+  </div>
 
-<%= form_for(@cuisine) do |f| %>
-
-<div>
-<%= f.label :name %>
-<%= f.text_field :name %>
-</div>
-<div>
-<%= f.submit('Enviar') %>
-</div>
-
-<% end %>
+  <% end %>
 </div>

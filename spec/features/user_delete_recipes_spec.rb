@@ -6,7 +6,7 @@ feature 'user delete recipes' do
     user = create(:user)
     recipe = create(:recipe, user: user)
 
-    login_as(user, :scope => :user)
+    login_as(user)
     visit root_path
     within('div.last_recipes') do
       click_on recipe.title

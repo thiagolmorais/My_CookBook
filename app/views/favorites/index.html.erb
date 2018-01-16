@@ -1,7 +1,4 @@
-<%= render 'layouts/header' %>
-
 <h1>Minhas Receitas Favoritas</h1>
-
 
 <% @favorites.each do |favorite| %>
   <% if (favorite.user_id == current_user.id) %>

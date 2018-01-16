@@ -1,64 +1,68 @@
-<%= render 'layouts/header' %>
-
 <div class="container">
 
-<p><%= "Bem-vindo #{current_user.username}" if user_signed_in? %></p>
-<br>
-<%= flash[:error] %>
-<%= flash[:sucess] %>
+  <p><%= "Bem-vindo #{current_user.username}" if user_signed_in? %></p>
+  <br>
+  <%= flash[:error] %>
+  <%= flash[:sucess] %>
 
-<h1>CookBook</h1>
-<p>Bem-vindo ao maior livro de receitas online</p>
+  <h1>CookBook</h1>
+  <p>Bem-vindo ao maior livro de receitas online</p>
 
-<div class="row">
+  <div class="row">
 
-  <div class="col-lg-4">
-  <p>Tipo<p>
-<% @recipe_types.each do |recipe_type| %>
-  <h1><%= link_to recipe_type.name, recipe_type_path(recipe_type[:id])%></h1>
-<% end %>
+    <div class="col-lg-4">
 
-  <p>Cozinha<p>
-<% @cuisines.each do |cuisine| %>
-  <h1><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
-<% end %>
-
-  </div>
-
-
-  <div class="col-lg-4">
-    <div class="last_recipes">
-    <h1>Últimas Receitas<h1>
-
-      <% @last_recipes.each do |recipe| %>
-        <h1><%= link_to recipe.title, recipe_path(recipe[:id])%></h1>
-        <ul>
-          <li><%= recipe.recipe_type.name %></li>
-          <li><%= recipe.cuisine.name %></li>
-          <li><%= recipe.difficulty %></li>
-          <li><%= recipe.cook_time %> minutos</li>
-        </ul>
+      <p>Tipo<p>
+      <% @recipe_types.each do |recipe_type| %>
+        <h1><%= link_to recipe_type.name, recipe_type_path(recipe_type[:id])%></h1>
       <% end %>
+
+      <p>Cozinha<p>
+      <% @cuisines.each do |cuisine| %>
+        <h1><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
+      <% end %>
+
     </div>
+
+
+    <div class="col-lg-4">
+
+      <div class="last_recipes">
+
+        <h1>Últimas Receitas<h1>
+        <% @last_recipes.each do |recipe| %>
+          <h1><%= link_to recipe.title, recipe_path(recipe[:id])%></h1>
+          <ul>
+            <li><%= recipe.recipe_type.name %></li>
+            <li><%= recipe.cuisine.name %></li>
+            <li><%= recipe.difficulty %></li>
+            <li><%= recipe.cook_time %> minutos</li>
+          </ul>
+        <% end %>
+
+      </div>
+
+    </div>
+
+
+    <div id="favorite" class="col-lg-4">
+
+      <div class="all_recipes">
+
+        <h1>Todas Receitas<h1>
+        <% @recipes.each do |recipe| %>
+          <h1><%= link_to recipe.title, recipe_path(recipe[:id])%></h1>
+            <ul>
+              <li><%= recipe.recipe_type.name %></li>
+              <li><%= recipe.cuisine.name %></li>
+              <li><%= recipe.difficulty %></li>
+              <li><%= recipe.cook_time %> minutos</li>
+            </ul>
+        <% end %>
+
+      </div>
+
+    </div>
+
   </div>
-
-
-  <div id="favorite" class="col-lg-4">
-    <div class="all_recipes">
-    <h1>Todas Receitas<h1>
-
-    <% @recipes.each do |recipe| %>
-      <h1><%= link_to recipe.title, recipe_path(recipe[:id])%></h1>
-      <ul>
-        <li><%= recipe.recipe_type.name %></li>
-        <li><%= recipe.cuisine.name %></li>
-        <li><%= recipe.difficulty %></li>
-        <li><%= recipe.cook_time %> minutos</li>
-      </ul>
-    <% end %>
-  </div>
 </div>
-
-</div>
-</div>
-<%= render 'layouts/footer' %>

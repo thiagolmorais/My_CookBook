@@ -26,6 +26,7 @@ class CuisinesController < ApplicationController
   end
 
   private
+  
   def cuisine_params
     params.require(:cuisine).permit(:name)
   end

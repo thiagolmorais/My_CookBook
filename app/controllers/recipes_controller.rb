@@ -20,7 +20,6 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-
     if @recipe.save
       redirect_to recipe_path(Recipe.last)
     else
@@ -29,7 +28,6 @@ class RecipesController < ApplicationController
       flash.now[:error] = 'Você deve informar todos os dados da receita'
       render :new
     end
-
   end
 
   def edit
@@ -75,6 +73,7 @@ class RecipesController < ApplicationController
   end
 
   private
+  
   def recipe_params
     user_id = User
     params.require(:recipe).permit(:title, :recipe_type_id,
