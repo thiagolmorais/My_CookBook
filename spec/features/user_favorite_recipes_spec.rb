@@ -3,28 +3,13 @@ require 'rails_helper'
 feature 'User select favorite recipes' do
 
   scenario 'Sucess' do
-    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
-    id = user.id
+    user = create(:user)
+    recipe = create(:recipe, user: user)
 
-    cuisine = Cuisine.create(name: 'Arabe')
-    cuisine_type = RecipeType.create(name: 'Sobremesa')
-
-    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: cuisine_type,
-                          cuisine: cuisine, difficulty: 'Médio',
-                          cook_time: 50,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
-
+    login_as(user)
     visit root_path
-    click_on 'Entrar'
-    fill_in 'Email', with: user.email
-    fill_in 'Senha', with: user.password
-
-    within('div.actions') do
-      click_on 'Entrar'
-    end
     within('div.last_recipes') do
-      click_on 'Bolodecenoura'
+      click_on 'Bolo de cenoura'
     end
     click_on 'Salvar como Favorita'
 
@@ -33,37 +18,15 @@ feature 'User select favorite recipes' do
 
 
   scenario 'Sucess' do
-    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
-    id = user.id
-    another_user = User.create(username: 'Vanessa', email: 'Vanessa@terra.com.br', password: '123456789')
-    another_id = another_user.id
+    user = create(:user, email: 'tf_lima@terra.com.br')
+    another_user = create(:user, email: 'joao@terra.com.br')
+    recipe = create(:recipe, title: 'Bolo de cenoura', user: user)
+    another_recipe = create(:recipe, title: 'Bolo de chocolate', user: another_user)
 
-    cuisine = Cuisine.create(name: 'Arabe')
-    cuisine_type = RecipeType.create(name: 'Sobremesa')
-
-    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: cuisine_type,
-                          cuisine: cuisine, difficulty: 'Médio',
-                          cook_time: 50,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
-
-    another_recipe = Recipe.create(title: 'Bolodeabacate', recipe_type: cuisine_type,
-                          cuisine: cuisine, difficulty: 'Médio',
-                          cook_time: 50,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: another_id)
-
-
+    login_as(user)
     visit root_path
-    click_on 'Entrar'
-    fill_in 'Email', with: user.email
-    fill_in 'Senha', with: user.password
-
-    within('div.actions') do
-      click_on 'Entrar'
-    end
     within('div.last_recipes') do
-      click_on 'Bolodecenoura'
+      click_on 'Bolo de cenoura'
     end
     click_on 'Salvar como Favorita'
     visit favorites_path
@@ -74,32 +37,17 @@ feature 'User select favorite recipes' do
   end
 
   scenario 'delete' do
-    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
-    id = user.id
+    user = create(:user)
+    recipe = create(:recipe, user: user)
 
-    cuisine = Cuisine.create(name: 'Arabe')
-    cuisine_type = RecipeType.create(name: 'Sobremesa')
-
-    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: cuisine_type,
-                          cuisine: cuisine, difficulty: 'Médio',
-                          cook_time: 50,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
-
+    login_as(user)
     visit root_path
-    click_on 'Entrar'
-    fill_in 'Email', with: user.email
-    fill_in 'Senha', with: user.password
-
-    within('div.actions') do
-      click_on 'Entrar'
-    end
     within('div.last_recipes') do
-      click_on 'Bolodecenoura'
+      click_on 'Bolo de cenoura'
     end
     click_on 'Salvar como Favorita'
     visit favorites_path
-    click_on 'Bolodecenoura'
+    click_on 'Bolo de cenoura'
     click_on 'Excluir das Favoritas'
 
     expect(page).to have_css('p', text: 'Receita excluida das Favoritas')

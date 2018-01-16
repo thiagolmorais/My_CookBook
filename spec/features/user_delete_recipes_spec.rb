@@ -2,26 +2,12 @@ require 'rails_helper'
 
 feature 'user delete recipes' do
   scenario 'successfully' do
-    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
-    id = user.id
 
-    cuisine = Cuisine.create(name: 'Arabe')
-    cuisine_type = RecipeType.create(name: 'Sobremesa')
+    user = create(:user)
+    recipe = create(:recipe, user: user)
 
-    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: cuisine_type,
-                          cuisine: cuisine, difficulty: 'Médio',
-                          cook_time: 50,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
-
+    login_as(user, :scope => :user)
     visit root_path
-    click_on 'Entrar'
-    fill_in 'Email', with: user.email
-    fill_in 'Senha', with: user.password
-
-    within('div.actions') do
-      click_on 'Entrar'
-    end
     within('div.last_recipes') do
       click_on recipe.title
     end

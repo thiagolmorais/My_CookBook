@@ -27,8 +27,7 @@ feature 'Visitor search for recipes' do
 
   scenario 'and navigate to recipe details' do
     # cria os dados necessários previamente
-
-    create(:recipe)
+    recipe = create(:recipe)
 
     # simula a ação do usuário
     visit root_path

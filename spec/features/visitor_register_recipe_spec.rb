@@ -3,19 +3,13 @@ require 'rails_helper'
 feature 'Visitor register recipe' do
   scenario 'successfully' do
     #cria os dados necessários
-    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
-    Cuisine.create(name: 'Arabe')
-    RecipeType.create(name: 'Entrada')
-    RecipeType.create(name: 'Prato Principal')
-    RecipeType.create(name: 'Sobremesa')
+    user = create(:user)
+    create(:cuisine, name: 'Arabe')
+    create(:recipe_type, name: 'Entrada')
+
     # simula a ação do usuário
+    login_as(user)
     visit root_path
-    click_on 'Entrar'
-    fill_in 'Email', with: user.email
-    fill_in 'Senha', with: user.password
-    within('div.actions') do
-      click_on 'Entrar'
-    end
     click_on 'Enviar uma receita'
 
     fill_in 'Título', with: 'Tabule'
@@ -42,16 +36,12 @@ feature 'Visitor register recipe' do
 
   scenario 'and must fill in all fields' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
-    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
-    Cuisine.create(name: 'Arabe')
+    user = create(:user)
+    create(:cuisine, name: 'Arabe')
+
     # simula a ação do usuário
+    login_as(user)
     visit root_path
-    click_on 'Entrar'
-    fill_in 'Email', with: user.email
-    fill_in 'Senha', with: user.password
-    within('div.actions') do
-      click_on 'Entrar'
-    end
     click_on 'Enviar uma receita'
 
     fill_in 'Título', with: ''
@@ -67,19 +57,12 @@ feature 'Visitor register recipe' do
 
   scenario 'recipe withe author' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
-    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
-    Cuisine.create(name: 'Arabe')
-    RecipeType.create(name: 'Entrada')
+    user = create(:user)
+    create(:cuisine, name: 'Arabe')
+    create(:recipe_type, name: 'Entrada')
     # simula a ação do usuário
+    login_as(user)
     visit root_path
-
-    click_on 'Entrar'
-    fill_in 'Email', with: user.email
-    fill_in 'Senha', with: user.password
-    within('div.actions') do
-      click_on 'Entrar'
-    end
-
     click_on 'Enviar uma receita'
     fill_in 'Título', with: 'Tabule'
     select 'Arabe', from: 'Cozinha'

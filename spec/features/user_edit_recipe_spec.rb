@@ -3,32 +3,14 @@ require 'rails_helper'
 feature 'User update recipe' do
   scenario 'successfully' do
     #cria os dados necessários
-    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
-    id = user.id
-    arabian_cuisine = Cuisine.create(name: 'Arabe')
-    brazilian_cuisine = Cuisine.create(name: 'Brasileira')
-
-    appetizer_type = RecipeType.create(name: 'Entrada')
-    main_type = RecipeType.create(name: 'Prato Principal')
-    dessert_type = RecipeType.create(name: 'Sobremesa')
-
-    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: main_type,
-                          cuisine: arabian_cuisine, difficulty: 'Médio',
-                          cook_time: 50,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
+    user = create(:user)
+    recipe = create(:recipe, user: user)
 
     # simula a ação do usuário
+    login_as(user)
     visit root_path
-    click_on 'Entrar'
-    fill_in 'Email', with: user.email
-    fill_in 'Senha', with: user.password
-
-    within('div.actions') do
-      click_on 'Entrar'
-    end
     within('div.last_recipes') do
-      click_on 'Bolodecenoura'
+      click_on 'Bolo de cenoura'
     end
     click_on 'Editar'
 
@@ -54,32 +36,14 @@ feature 'User update recipe' do
 
   scenario 'and all fields must be filled' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco
-    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
-    id = user.id
-    arabian_cuisine = Cuisine.create(name: 'Arabe')
-    brazilian_cuisine = Cuisine.create(name: 'Brasileira')
-
-    appetizer_type = RecipeType.create(name: 'Entrada')
-    main_type = RecipeType.create(name: 'Prato Principal')
-    dessert_type = RecipeType.create(name: 'Sobremesa')
-
-    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: main_type,
-                          cuisine: arabian_cuisine, difficulty: 'Médio',
-                          cook_time: 50,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
+    user = create(:user)
+    recipe = create(:recipe, user: user)
 
     # simula a ação do usuário
+    login_as(user)
     visit root_path
-    click_on 'Entrar'
-    fill_in 'Email', with: user.email
-    fill_in 'Senha', with: user.password
-
-    within('div.actions') do
-      click_on 'Entrar'
-    end
     within('div.last_recipes') do
-      click_on 'Bolodecenoura'
+      click_on 'Bolo de cenoura'
     end
     click_on 'Editar'
 
@@ -95,26 +59,13 @@ feature 'User update recipe' do
   end
 
   scenario 'edit only user user_signed_in' do
-    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
-    id = user.id
-    cuisine = Cuisine.create(name: 'Arabe')
-    type = RecipeType.create(name: 'Prato Principal')
-    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: type,
-                          cuisine: cuisine, difficulty: 'Médio',
-                          cook_time: 50,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
+    user = create(:user)
+    recipe = create(:recipe, user: user)
 
+    login_as(user)
     visit root_path
-    click_on 'Entrar'
-    fill_in 'Email', with: user.email
-    fill_in 'Senha', with: user.password
-
-    within('div.actions') do
-      click_on 'Entrar'
-    end
     within('div.last_recipes') do
-      click_on 'Bolodecenoura'
+      click_on 'Bolo de cenoura'
     end
 
     expect(page).to have_link('Editar')
@@ -122,27 +73,12 @@ feature 'User update recipe' do
 
   scenario 'not edit by outher user' do
 
-    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
-    id = user.id
-    cuisine = Cuisine.create(name: 'Arabe')
-    type = RecipeType.create(name: 'Prato Principal')
+    user = create(:user, email: 'tf_lima@terra.com.br')
+    recipe = create(:recipe, user: user)
+    another_user = create(:user, email: 'joao@terra.com.br')
 
-    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: type,
-                          cuisine: cuisine, difficulty: 'Médio',
-                          cook_time: 50,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
-
-    another_user = User.create(username: 'João', email: 'joao@terra.com.br', password: '123456')
-
+    login_as(another_user)
     visit root_path
-    click_on 'Entrar'
-    fill_in 'Email', with: another_user.email
-    fill_in 'Senha', with: another_user.password
-
-    within('div.actions') do
-      click_on 'Entrar'
-    end
     visit edit_recipe_path(recipe.id)
 
     expect(page).to have_current_path(root_path)
@@ -151,31 +87,16 @@ feature 'User update recipe' do
 
   scenario 'not fill edit' do
 
-    user = User.create(username: 'Thiago', email: 'tf_lima@terra.com.br', password: '123456789')
-    id = user.id
-    cuisine = Cuisine.create(name: 'Arabe')
-    type = RecipeType.create(name: 'Prato Principal')
+    user = create(:user, email: 'tf_lima@terra.com.br')
+    recipe = create(:recipe, user: user)
+    another_user = create(:user, email: 'joao@terra.com.br')
 
-    recipe = Recipe.create(title: 'Bolodecenoura', recipe_type: type,
-                          cuisine: cuisine, difficulty: 'Médio',
-                          cook_time: 50,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', user_id: id)
-
-    another_user = User.create(username: 'João', email: 'joao@terra.com.br', password: '123456')
-
+    login_as(another_user)
     visit root_path
-    click_on 'Entrar'
-    fill_in 'Email', with: another_user.email
-    fill_in 'Senha', with: another_user.password
-
-    within('div.actions') do
-      click_on 'Entrar'
-    end
     within('div.last_recipes') do
-      click_on 'Bolodecenoura'
+      click_on 'Bolo de cenoura'
     end
-    
+
     expect(page).not_to have_link('Editar')
   end
 
