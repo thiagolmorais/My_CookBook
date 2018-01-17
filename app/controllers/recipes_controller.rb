@@ -1,5 +1,7 @@
 class RecipesController < ApplicationController
 
+before_action :authenticate_user!, only: [:new, :edit]
+
   def index
     @recipes = Recipe.all
     @cuisines = Cuisine.all
@@ -73,7 +75,7 @@ class RecipesController < ApplicationController
   end
 
   private
-  
+
   def recipe_params
     user_id = User
     params.require(:recipe).permit(:title, :recipe_type_id,
