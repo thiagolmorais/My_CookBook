@@ -32,6 +32,8 @@ feature 'User update recipe' do
     expect(page).to have_css('p', text: '45 minutos')
     expect(page).to have_css('p', text:  'Cenoura, farinha, ovo, oleo de soja e chocolate')
     expect(page).to have_css('p', text: 'Faça um bolo e uma cobertura de chocolate')
+    expect(page).to have_content('Recita editada com sucesso')
+
   end
 
   scenario 'and all fields must be filled' do
@@ -98,6 +100,17 @@ feature 'User update recipe' do
     end
 
     expect(page).not_to have_link('Editar')
+  end
+
+  scenario 'not edit by url without is logged' do
+
+    recipe = create(:recipe)
+
+    visit root_path
+    visit edit_recipe_path(recipe.id)
+
+    expect(page).to have_current_path(root_path)
+    expect(page).to have_content('Acesso negado! Você precisa estar logado.')
   end
 
 end

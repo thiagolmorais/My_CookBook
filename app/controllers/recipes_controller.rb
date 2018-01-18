@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+before_action :find_recipe, only: [:show, :edit, :update, :destroy, :favorite, :unfavorite]
+before_action :require_login, only: [:edit]
 
   def index
     @recipes = Recipe.all
@@ -6,8 +8,6 @@ class RecipesController < ApplicationController
   end
 
   def show
-    id = params[:id]
-    @recipe = Recipe.find(id)
     @favorites = Favorite.all
   end
 
@@ -31,20 +31,13 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    id = params[:id]
-    @recipe = Recipe.find(id)
     @cuisines = Cuisine.all
     @recipe_type = RecipeType.all
-    if (current_user.id != @recipe.user_id)
-      flash[:error] = 'Você não pode editar receitas enviadas por outros usuários.'
-      redirect_to root_path
-    end
   end
 
   def update
-    id = params[:id]
-    @recipe = Recipe.find(id)
     if @recipe.update(recipe_params)
+      flash[:sucess] = 'Recita editada com sucesso'
       redirect_to recipe_path(@recipe.id)
     else
       @recipe_type = RecipeType.all
@@ -60,8 +53,6 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    id = params[:id]
-    @recipe = Recipe.find(id)
     if (current_user == @recipe.user)
       @recipe.destroy
       flash[:sucess] = 'Receita excluída com sucesso!'
@@ -72,8 +63,34 @@ class RecipesController < ApplicationController
     end
   end
 
+  def favorites
+    if current_user.favorite_recipes.any?
+      @recipes = current_user.favorite_recipes
+    else
+      @recipes = current_user.favorite_recipes
+      flash.now[:notice] = 'Nenhuma receita favorita'
+  end
+
+  end
+
+  def favorite
+    @recipe.favorites.create(user: current_user)
+    flash[:sucess] = 'Receita adicionada como Favorita'
+    redirect_to recipe_path(@recipe)
+  end
+
+  def unfavorite
+    Favorite.find_by(recipe: @recipe, user: current_user).destroy
+    flash[:notice] = 'Receita excluida das Favoritas'
+    redirect_to recipe_path @recipe
+  end
+
   private
-  
+
+  def find_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
   def recipe_params
     user_id = User
     params.require(:recipe).permit(:title, :recipe_type_id,

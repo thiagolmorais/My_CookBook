@@ -20,18 +20,10 @@
   <p><%= "Enviada por #{@recipe.user.username}" %></p>
 
   <div>
-    <% control = 0 %>
-    <% @favorites.each do |favorite| %>
-      <% if (favorite.control == "#{@recipe.id}#{current_user.id}")%>
-        <% control += 1 %>
-        <% @f = favorite %>
-      <% end %>
-    <% end %>
-
-    <% if control == 0 %>
-      <%= link_to 'Salvar como Favorita', favorites_path(recipe_id: @recipe.id, user_id: current_user.id), method: :post if user_signed_in? %>
+    <% if @recipe.favorite?(current_user) %>
+      <%= link_to 'Excluir das Favoritas', unfavorite_recipe_path(@recipe), method: :delete %>
     <% else %>
-      <%= link_to 'Excluir das Favoritas', favorite_path(@f.id), method: :delete if user_signed_in? %>
+      <%= link_to 'Salvar como Favorita', favorite_recipe_path(@recipe), method: :post %>
     <% end %>
 
   </div>
@@ -47,5 +39,5 @@
   <div>
     <%= link_to 'Voltar', root_path %>
   </div>
-  
+
 </div>

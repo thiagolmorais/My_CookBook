@@ -6,4 +6,19 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
   end
+
+  private
+
+  def require_login
+    if user_signed_in?
+      if current_user.id != @recipe.user_id
+        flash[:alert] = "Você não pode editar receitas enviadas por outros usuários."
+        redirect_to root_path
+      end
+    else
+      flash[:alert] = "Acesso negado! Você precisa estar logado."
+      redirect_to root_path
+    end
+  end
+
 end

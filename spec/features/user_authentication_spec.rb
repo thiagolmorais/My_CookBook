@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User login' do
+feature 'successfully' do
   scenario 'sucess' do
 
     user = create(:user)
