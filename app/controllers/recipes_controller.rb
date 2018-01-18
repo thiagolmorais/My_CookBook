@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
-before_action :find_recipe, only: [:show, :edit, :update, :destroy, :favorite, :unfavorite]
-before_action :require_login, only: [:edit]
+before_action :find_recipe, only: [:show, :edit, :update, :destroy, :favorite, :unfavorite, :share]
+before_action :require_login, only: [:edit, :favorites]
 
 before_action :authenticate_user!, only: [:new, :edit]
 
@@ -85,6 +85,14 @@ before_action :authenticate_user!, only: [:new, :edit]
     Favorite.find_by(recipe: @recipe, user: current_user).destroy
     flash[:notice] = 'Receita excluida das Favoritas'
     redirect_to recipe_path @recipe
+  end
+
+  def share
+    email = params[:email]
+    message = params[:message]
+    RecipesMailer.share(email, message, @recipe.id).deliver_now
+    flash[:notice] = "Email envidado para #{email}"
+    redirect_to @recipe
   end
 
   private

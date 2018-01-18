@@ -20,13 +20,30 @@
   <p><%= "Enviada por #{@recipe.user.username}" %></p>
 
   <div>
-    <% if @recipe.favorite?(current_user) %>
-      <%= link_to 'Excluir das Favoritas', unfavorite_recipe_path(@recipe), method: :delete %>
-    <% else %>
-      <%= link_to 'Salvar como Favorita', favorite_recipe_path(@recipe), method: :post %>
+    <% if user_signed_in? %>
+      <% if @recipe.favorite?(current_user) %>
+        <%= link_to 'Excluir das Favoritas', unfavorite_recipe_path(@recipe), method: :delete %>
+      <% else %>
+        <%= link_to 'Salvar como Favorita', favorite_recipe_path(@recipe), method: :post %>
+      <% end %>
     <% end %>
 
   </div>
+
+<div>
+  <%= form_tag(share_recipe_path, method: "post") do %>
+  <div>
+    <%= label_tag(:email, "Email") %>
+    <%= text_field_tag(:email) %>
+  </div>
+  <div>
+    <%= label_tag(:message, "Mensagem") %>
+    <%= text_area_tag(:message) %>
+  </div>
+    <%= submit_tag("Enviar") %>
+  <% end %>
+</div>
+
 
   <div>
     <%= link_to 'Editar', edit_recipe_path if (current_user == @recipe.user) %>
