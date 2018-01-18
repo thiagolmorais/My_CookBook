@@ -2,6 +2,8 @@ class RecipesController < ApplicationController
 before_action :find_recipe, only: [:show, :edit, :update, :destroy, :favorite, :unfavorite]
 before_action :require_login, only: [:edit]
 
+before_action :authenticate_user!, only: [:new, :edit]
+
   def index
     @recipes = Recipe.all
     @cuisines = Cuisine.all
