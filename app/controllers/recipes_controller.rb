@@ -1,8 +1,8 @@
 class RecipesController < ApplicationController
 before_action :find_recipe, only: [:show, :edit, :update, :destroy, :favorite, :unfavorite, :share]
-before_action :require_login, only: [:edit, :favorites]
+before_action :require_login, only: [:edit]
 
-before_action :authenticate_user!, only: [:new, :edit]
+before_action :authenticate_user!, only: [:new, :favorites]
 
   def index
     @recipes = Recipe.all
@@ -102,10 +102,10 @@ before_action :authenticate_user!, only: [:new, :edit]
   end
 
   def recipe_params
-    user_id = User
+    user_id = current_user
     params.require(:recipe).permit(:title, :recipe_type_id,
                                    :cuisine_id, :difficulty, :cook_time,
-                                   :people_serve, :ingredients,:method, :user_id)
+                                   :people_serve, :ingredients,:method, :image, :user_id)
   end
 
 end

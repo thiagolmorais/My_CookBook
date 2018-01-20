@@ -6,6 +6,9 @@
 
   <h3>Detalhes</h3>
   <p><%= @recipe.recipe_type.name %></p>
+  <% if @recipe.image.file? %>
+    <img><%= image_tag @recipe.image.url %></img>
+  <% end %>
   <p><%= @recipe.cuisine.name %></p>
   <p><%= @recipe.difficulty %></p>
   <p><%= @recipe.cook_time %> minutos</p>
@@ -34,7 +37,7 @@
   <%= form_tag(share_recipe_path, method: "post") do %>
   <div>
     <%= label_tag(:email, "Email") %>
-    <%= text_field_tag(:email) %>
+    <%= email_field_tag(:email) %>
   </div>
   <div>
     <%= label_tag(:message, "Mensagem") %>

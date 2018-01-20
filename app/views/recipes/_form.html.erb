@@ -2,7 +2,8 @@
   <%= flash[:error] %>
   <br>
 
-  <%= form_for(@recipe) do |f| %>
+  <%= form_for (@recipe), html: {multipart: true} do |f| %>
+
 
   <div>
     <%= f.label :title %>
@@ -42,6 +43,11 @@
   <div>
     <%= f.label :method %>
     <%= f.text_area :method %>
+  </div>
+
+  <div>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
   </div>
 
   <div class="hide">

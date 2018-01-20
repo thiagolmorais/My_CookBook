@@ -11,6 +11,7 @@ pt-BR:
         ingredients: 'Ingredientes'
         method: 'Como Preparar'
         user_id: 'Usuário'
+        image: 'Imagem'
       recipe_type:
         name: 'Nome'
       cuisine:

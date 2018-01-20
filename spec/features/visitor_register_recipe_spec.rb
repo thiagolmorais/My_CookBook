@@ -81,6 +81,31 @@ feature 'Visitor register recipe' do
 
   end
 
+  scenario 'and add photo' do
+    user = create(:user)
+    create(:cuisine, name: 'Arabe')
+    create(:recipe_type, name: 'Entrada')
 
+    login_as(user)
+    visit root_path
+    click_on 'Enviar uma receita'
+    fill_in 'Título', with: 'Tabule'
+    select 'Arabe', from: 'Cozinha'
+    select 'Entrada', from: 'Tipo da Receita'
+    fill_in 'Dificuldade', with: 'Fácil'
+    fill_in 'Tempo de Preparo', with: '45'
+    fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha'
+    fill_in 'Como Preparar', with: 'Misturar tudo e servir. Adicione limão a gosto.'
+    attach_file('Imagem', 'spec/support/paperclip/images/tabule.jpg')
+
+    click_on 'Enviar'
+    click_on 'Voltar'
+    within('div.last_recipes') do
+      click_on 'Tabule'
+    end
+
+    expect(page).to have_css("img[src*='tabule.jpg']")
+
+  end
 
 end
