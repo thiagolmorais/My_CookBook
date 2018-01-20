@@ -96,7 +96,8 @@ feature 'Visitor register recipe' do
     fill_in 'Tempo de Preparo', with: '45'
     fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha'
     fill_in 'Como Preparar', with: 'Misturar tudo e servir. Adicione limão a gosto.'
-    attach_file('Imagem', 'spec/support/paperclip/images/tabule.jpg ')
+    attach_file('Imagem', 'spec/support/paperclip/images/tabule.jpg')
+
 
     click_on 'Enviar'
     click_on 'Voltar'

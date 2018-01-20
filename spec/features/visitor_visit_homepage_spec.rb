@@ -47,4 +47,43 @@ feature 'Visitor visit homepage' do
     expect(page).to have_css('li', text: another_recipe.difficulty)
     expect(page).to have_css('li', text: "#{another_recipe.cook_time} minutos")
   end
+
+  scenario 'and see 3 recipes more favorited' do
+    user1 = create(:user, email: 'user1@bol.com')
+    user2 = create(:user, email: 'user2@bol.com')
+    user3 = create(:user, email: 'user3@bol.com')
+    user4 = create(:user, email: 'user4@bol.com')
+    user5 = create(:user, email: 'user5@bol.com')
+    user6 = create(:user, email: 'user6@bol.com')
+    user7 = create(:user, email: 'user7@bol.com')
+    user8 = create(:user, email: 'user8@bol.com')
+    user9 = create(:user, email: 'user9@bol.com')
+    user10 = create(:user, email: 'user10@bol.com')
+    recipe1 = create(:recipe, title: 'Bolo1', user: user1)
+    recipe2 = create(:recipe, title: 'Bolo2', user: user1)
+    recipe3 = create(:recipe, title: 'Bolo3', user: user1)
+    recipe4 = create(:recipe, title: 'Bolo4', user: user1)
+    recipe5 = create(:recipe, title: 'Bolo5', user: user1)
+    recipe6 = create(:recipe, title: 'Bolo6', user: user1)
+    Favorite.create(user: user1, recipe: recipe3)
+    Favorite.create(user: user2, recipe: recipe3)
+    Favorite.create(user: user3, recipe: recipe3)
+    Favorite.create(user: user4, recipe: recipe3)
+    Favorite.create(user: user5, recipe: recipe5)
+    Favorite.create(user: user6, recipe: recipe5)
+    Favorite.create(user: user7, recipe: recipe5)
+    Favorite.create(user: user8, recipe: recipe2)
+    Favorite.create(user: user9, recipe: recipe2)
+    Favorite.create(user: user10, recipe: recipe4)
+
+    visit root_path
+
+    expect(page).to have_css('div.more_favorited_recipes', text: recipe3.title)
+    expect(page).to have_css('div.more_favorited_recipes', text: recipe5.title)
+    expect(page).to have_css('div.more_favorited_recipes', text: recipe2.title)
+    expect(page).not_to have_css('div.more_favorited_recipes', text: recipe1.title)
+    expect(page).not_to have_css('div.more_favorited_recipes', text: recipe4.title)
+    expect(page).not_to have_css('div.more_favorited_recipes', text: recipe6.title)
+  end
+
 end
