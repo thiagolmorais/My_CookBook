@@ -124,17 +124,12 @@ feature 'Visitor register recipe' do
     fill_in 'Tempo de Preparo', with: '45'
     fill_in 'Ingredientes', with: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha'
     fill_in 'Como Preparar', with: 'Misturar tudo e servir. Adicione limão a gosto.'
-    check('featured')
-
+    check('Destaque')
 
     click_on 'Enviar'
-    click_on 'Voltar'
-    within('div.last_recipes') do
-      click_on 'Tabule'
-    end
+    visit root_path
 
-    expect(page).to have_css("img[src*='featured.jpg']")
-    expect(page).to page.check('feature')
+    expect(page).to have_css("img[src*='/assets/star-0582542e7338ffe28bc07bcd06e2a047d529743295cb753916c435368db3838b.png']")
 
   end
 

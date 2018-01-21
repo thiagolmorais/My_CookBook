@@ -31,7 +31,12 @@
 
         <h1>Últimas Receitas<h1>
         <% @last_recipes.each do |recipe| %>
-          <h1><%= link_to recipe.title, recipe_path(recipe[:id])%></h1>
+          <h1><%= link_to recipe.title, recipe_path(recipe[:id])%>
+            <% if recipe.featured %>
+              <img><%= image_tag "star.png" %></img>
+            <% end %>
+          </h1>
+
           <ul>
             <li><%= recipe.recipe_type.name %></li>
             <li><%= recipe.cuisine.name %></li>
@@ -51,7 +56,11 @@
 
         <h1>Favoritas dos usuários<h1>
         <% @more_favorited.each do |recipe| %>
-          <h1><%= link_to recipe.title, recipe_path(recipe[:id])%></h1>
+          <h1><%= link_to recipe.title, recipe_path(recipe[:id])%>
+            <% if recipe.featured %>
+              <img><%= image_tag "star.png" %></img>
+            <% end %>
+          </h1>
             <ul>
               <li><%= recipe.recipe_type.name %></li>
               <li><%= recipe.cuisine.name %></li>

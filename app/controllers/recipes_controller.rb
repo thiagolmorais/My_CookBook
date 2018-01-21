@@ -22,6 +22,7 @@ before_action :authenticate_user!, only: [:new, :favorites]
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.featured = @featured
     if @recipe.save
       redirect_to recipe_path(Recipe.last)
     else
@@ -39,6 +40,7 @@ before_action :authenticate_user!, only: [:new, :favorites]
 
   def update
     if @recipe.update(recipe_params)
+      @recipe.update(featured: @featured)
       flash[:sucess] = 'Recita editada com sucesso'
       redirect_to recipe_path(@recipe.id)
     else
@@ -103,6 +105,12 @@ before_action :authenticate_user!, only: [:new, :favorites]
 
   def recipe_params
     user_id = current_user
+    destaque = params[:featured]
+    if destaque == '1'
+      @featured = true
+    else
+      @featured = false
+    end
     params.require(:recipe).permit(:title, :recipe_type_id,
                                    :cuisine_id, :difficulty, :cook_time,
                                    :people_serve, :ingredients,:method, :image, :user_id)
