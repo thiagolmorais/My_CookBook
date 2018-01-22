@@ -131,6 +131,8 @@ feature 'Visitor register recipe' do
 
     expect(page).to have_css("img[src*='/assets/star-0582542e7338ffe28bc07bcd06e2a047d529743295cb753916c435368db3838b.png']")
 
+
+
   end
 
 end

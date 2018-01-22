@@ -28,15 +28,16 @@
 
     <div class="col-md-5" >
       <h1 style="font-size:30px">Últimas Receitas</h1>
+      <div class="last_recipes">
       <% @last_recipes.each do |recipe| %>
       <div class="col-md-6" >
         <br>
         <img><%= image_tag recipe.image.url, width: "130", height: "130"  if recipe.image.file? %></img>
       </div>
       <div class="col-md-6" >
-        <div class="last_recipes">
+
             <h1 style="font-size:20px">
-              <%= link_to recipe.title, recipe_path(recipe[:id])%>
+              <%= link_to recipe.title, recipe_path(recipe[:id]), class: "last_recipes"%>
               <img><%= image_tag "star.png", width: "25", height: "25" if recipe.featured %></img>
             </h1>
 
@@ -49,24 +50,25 @@
 
 
         </div>
-      </div>
-      <% end %>
 
+      <% end %>
+      </div>
 
     </div>
 
 
     <div class="col-md-5">
       <h1 style="font-size:30px">Favoritas dos usuários</h1>
+      <div class="more_favorited_recipes">
       <% @more_favorited.each do |recipe| %>
       <div class="col-md-6">
         <br>
           <img><%= image_tag recipe.image.url, width: "130", height: "130" if recipe.image.file? %></img>
       </div>
       <div class="col-md-6">
-        <div class="more_favorited_recipes">
+
           <h1 style="font-size:20px">
-            <%= link_to recipe.title, recipe_path(recipe[:id])%>
+            <%= link_to recipe.title, recipe_path(recipe[:id]), class: "more_favorited_recipes" %>
             <img><%= image_tag "star.png", width: "25", height: "25" if recipe.featured %></img>
           </h1>
           <ul>
@@ -79,8 +81,9 @@
 
         </div>
 
-    </div>
+
     <% end %>
+      </div>
   </div>
 </div>
 </div>
