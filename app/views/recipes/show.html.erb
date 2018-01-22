@@ -1,63 +1,106 @@
+<br>
+<p><%= flash[:sucess] %></p>
+<br>
 <div class="container">
-  <br>
-  <p><%= flash[:sucess] %></p>
-  <br>
-  <h1><%= @recipe.title %></h1>
 
+
+  <div class="row">
+
+    <div class="col-md-2">
+
+      <p style="font-size:20px">Tipo<p>
+      <% @recipe_types.each do |recipe_type| %>
+        <h1 style="font-size:15px"><%= link_to recipe_type.name, recipe_type_path(recipe_type[:id]) %></h1>
+      <% end %>
+
+      <p style="font-size:20px">Cozinha<p>
+      <% @cuisines.each do |cuisine| %>
+        <h1 style="font-size:15px"><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
+      <% end %>
+
+    </div>
+
+<div class="col-md-4">
+  <h1>
+    <%= @recipe.title %>
+    <img><%= image_tag "star.png", width: "25", height: "25" if @recipe.featured %></img>
+  </h1>
+    <p><%= "Enviada por #{@recipe.user.username}" %></p>
   <h3>Detalhes</h3>
-  <p><%= @recipe.recipe_type.name %></p>
-  <% if @recipe.image.file? %>
-    <img><%= image_tag @recipe.image.url %></img>
-  <% end %>
-  <p><%= @recipe.cuisine.name %></p>
-  <p><%= @recipe.difficulty %></p>
-  <p><%= @recipe.cook_time %> minutos</p>
-  <p><%= @recipe.people_serve %></p>
+  <p>Tipo: <%= @recipe.recipe_type.name %></p>
+
+  <p>Cozinha: <%= @recipe.cuisine.name %></p>
+  <p>Serve: <%= @recipe.people_serve %> pessoas</p>
+  <p>Tempo de preparo: <%= @recipe.cook_time %> minutos</p>
+  <p>Dificuldade: <%= @recipe.difficulty %></p>
+
+
 
   <h3>Ingredientes</h3>
   <p><%= @recipe.ingredients %></p>
+</div>
+<div class="col-md-6">
+  <br>
 
+    <img><%= image_tag @recipe.image.url, width: "380", height: "230" if @recipe.image.file? %></img>
+  <br>
+  <br>
+  <br>
   <h3>Como Preparar</h3>
   <p><%= @recipe.method %></p>
-
-  <p><%= "Enviada por #{@recipe.user.username}" %></p>
-
-  <div>
-    <% if user_signed_in? %>
-      <% if @recipe.favorite?(current_user) %>
-        <%= link_to 'Excluir das Favoritas', unfavorite_recipe_path(@recipe), method: :delete %>
-      <% else %>
-        <%= link_to 'Salvar como Favorita', favorite_recipe_path(@recipe), method: :post %>
-      <% end %>
-    <% end %>
-
-  </div>
-
-<div>
-  <%= form_tag(share_recipe_path, method: "post") do %>
-  <div>
-    <%= label_tag(:email, "Email") %>
-    <%= email_field_tag(:email) %>
-  </div>
-  <div>
-    <%= label_tag(:message, "Mensagem") %>
-    <%= text_area_tag(:message) %>
-  </div>
-    <%= submit_tag("Enviar") %>
-  <% end %>
 </div>
 
+</div>
+</div>
+<hr>
+<div class="container">
+  <div class="row">
 
-  <div>
-    <%= link_to 'Editar', edit_recipe_path if (current_user == @recipe.user) %>
+    <div class="col-md-2">
+    </div>
+
+    <div class="col-md-4">
+      <% if user_signed_in? %>
+        <% if @recipe.favorite?(current_user) %>
+          <%= link_to 'Excluir das Favoritas', unfavorite_recipe_path(@recipe), class:"btn btn-warning", method: :delete %>
+        <% else %>
+          <%= link_to 'Salvar como Favorita', favorite_recipe_path(@recipe), class:"btn btn-info", method: :post %>
+        <% end %>
+      <% end %>
+
+
+
+    <div>
+      <%= link_to 'Editar', edit_recipe_path, class:"btn btn-success" if (current_user == @recipe.user) %>
+    </div>
+
+    <div>
+      <%= link_to 'Excluir Receita', @recipe, method: :delete, class:"btn btn-danger" if (current_user == @recipe.user) %>
+    </div>
+
+    <div>
+      <%= link_to 'Voltar', root_path, class:"btn btn-default" %>
+    </div>
   </div>
+    <div class="col-md-6">
+      <div>
+        <%= form_tag(share_recipe_path, method: "post") do %>
+        <div class="form-group">
+          <%= label_tag :email, "Email", class: "col-sm-2 control-label" %>
+          <%= email_field_tag(:email) %>
+        </div>
+        <div class="form-group">
+          <%= label_tag :message, "Mensagem", class: "col-sm-2 control-label" %>
+          <%= text_area_tag(:message) %>
+        </div>
+        <div class="form-group">
+          <%= submit_tag 'Enviar', class: "btn btn-success" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
 
-  <div>
-    <%= link_to 'Excluir Receita', @recipe, method: :delete if (current_user == @recipe.user) %>
+
+
   </div>
-
-  <div>
-    <%= link_to 'Voltar', root_path %>
-  </div>
-
 </div>

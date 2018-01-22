@@ -10,6 +10,8 @@ before_action :authenticate_user!, only: [:new, :favorites]
   end
 
   def show
+    @cuisines = Cuisine.all
+    @recipe_types = RecipeType.all
     @favorites = Favorite.all
   end
 
@@ -68,6 +70,8 @@ before_action :authenticate_user!, only: [:new, :favorites]
   end
 
   def favorites
+    @cuisines = Cuisine.all
+    @recipe_types = RecipeType.all
     if current_user.favorite_recipes.any?
       @recipes = current_user.favorite_recipes
     else

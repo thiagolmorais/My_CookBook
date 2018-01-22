@@ -1,11 +1,54 @@
-<h1>Minhas Receitas Favoritas</h1>
+<div class="container">
+  <h1>Minhas Receitas Favoritas</h1>
 
-<% @recipes.each do |recipe| %>
-  <h1><%= link_to recipe.title, recipe_path(recipe[:id])%></h1>
-    <ul>
-      <li><%= recipe.recipe_type.name %></li>
-      <li><%= recipe.cuisine.name %></li>
-      <li><%= recipe.difficulty %></li>
-      <li><%= recipe.cook_time %> minutos</li>
-    </ul>
-<% end %>
+    <div class="row">
+
+      <div class="col-md-2">
+
+        <p style="font-size:20px">Tipo<p>
+        <% @recipe_types.each do |recipe_type| %>
+          <h1 style="font-size:15px"><%= link_to recipe_type.name, recipe_type_path(recipe_type[:id]) %></h1>
+        <% end %>
+
+        <p style="font-size:20px">Cozinha<p>
+        <% @cuisines.each do |cuisine| %>
+          <h1 style="font-size:15px"><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
+        <% end %>
+
+      </div>
+
+
+      <div class="col-md-5" >
+        <% @recipes.each do |recipe| %>
+        <div class="col-md-6" >
+          <br>
+          <img><%= image_tag recipe.image.url, width: "130", height: "130"  if recipe.image.file? %></img>
+        </div>
+        <div class="col-md-6" >
+          <div class="favorites_recipes">
+              <h1 style="font-size:20px">
+                <%= link_to recipe.title, recipe_path(recipe[:id])%>
+                <img><%= image_tag "star.png", width: "25", height: "25" if recipe.featured %></img>
+              </h1>
+
+              <ul>
+                <li>Tipo: <%= recipe.recipe_type.name %></li>
+                <li>Cozinha: <%= recipe.cuisine.name %></li>
+                <li>Dificuldade: <%= recipe.difficulty %></li>
+                <li>Tempo de preparo: <%= recipe.cook_time %> minutos</li>
+              </ul>
+
+
+          </div>
+        </div>
+        <% end %>
+
+
+      </div>
+
+
+      <div class="col-md-5">
+
+    </div>
+  </div>
+  </div>

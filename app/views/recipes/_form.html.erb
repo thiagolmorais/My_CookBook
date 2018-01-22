@@ -2,52 +2,74 @@
   <%= flash[:error] %>
   <br>
 
-  <%= form_for (@recipe), html: {multipart: true} do |f| %>
+
+  <form class="form-horizontal">
 
 
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+  <%= form_for (@recipe), html: {multipart: true}, class: "form-horizontal" do |f| %>
+
+
+  <div class="form-group">
+    <%= f.label :title, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :recipe_type_id %>
-    <%= f.collection_select :recipe_type_id, @recipe_type, :id, :name %>
+  <div class="form-group">
+    <%= f.label :recipe_type_id, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select :recipe_type_id, @recipe_type, :id, :name %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :cuisine_id %>
-    <%= f.collection_select :cuisine_id, @cuisines, :id, :name %>
+  <div class="form-group">
+    <%= f.label :cuisine_id, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select :cuisine_id, @cuisines, :id, :name %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :difficulty %>
-    <%= f.text_field :difficulty %>
+  <div class="form-group">
+    <%= f.label :difficulty, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :difficulty, class: "form-control" %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :cook_time %>
-    <%= f.number_field :cook_time %>
+  <div class="form-group">
+    <%= f.label :cook_time, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :cook_time, class: "form-control" %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :people_serve %>
-    <%= f.number_field :people_serve %>
+  <div class="form-group">
+    <%= f.label :people_serve, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :people_serve, class: "form-control" %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :ingredients %>
-    <%= f.text_area :ingredients %>
+  <div class="form-group">
+    <%= f.label :ingredients, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_area :ingredients, class: "form-control" %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :method %>
-    <%= f.text_area :method %>
+  <div class="form-group">
+    <%= f.label :method, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_area :method, class: "form-control" %>
+    </div>
   </div>
 
-  <div>
-    <%= f.label :image %>
-    <%= f.file_field :image %>
+  <div class="form-group">
+    <%= f.label :image, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.file_field :image %>
+    </div>
   </div>
 
   <div class="hide">
@@ -55,16 +77,17 @@
     <%= f.text_field :user_id, value: current_user.id %>
   </div>
 
-  <div>
-    <%= check_box_tag :featured %>
-    <%= label_tag :featured, 'Destaque' %>
+  <div class="form-group">
+      <%= check_box_tag :featured, class: "checkbox" %>
+      <%= label_tag :featured, 'Destaque', class: "col-sm-2 control-label" %>
   </div>
 
 
-  <div>
-    <%= f.submit('Enviar') %>
+  <div class="navbar-right">
+    <%= f.submit 'Enviar', class: "btn btn-success" %>
   </div>
 
-    <% end %>
+
+  <% end %>
 
 </div>
