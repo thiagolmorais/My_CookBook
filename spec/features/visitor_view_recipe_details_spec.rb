@@ -2,8 +2,7 @@ require 'rails_helper'
 
 feature 'Visitor view recipe details' do
   scenario 'successfully' do
-    #cria os dados necessários
-
+    # cria os dados necessários
     recipe = create(:recipe)
 
     # simula a ação do usuário
@@ -26,7 +25,7 @@ feature 'Visitor view recipe details' do
   end
 
   scenario 'and return to recipe list' do
-    #cria os dados necessários
+    # cria os dados necessários
     recipe = create(:recipe)
 
     # simula a ação do usuário

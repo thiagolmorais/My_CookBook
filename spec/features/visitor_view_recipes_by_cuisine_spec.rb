@@ -1,10 +1,8 @@
 require 'rails_helper'
 
 feature 'Visitor view recipes by cuisine' do
-
   scenario 'from home page' do
     # cria os dados necessários previamente
-
     recipe = create(:recipe)
 
     # simula a ação do usuário
@@ -23,12 +21,13 @@ feature 'Visitor view recipes by cuisine' do
   scenario 'and view only cuisine recipes' do
     # cria os dados necessários previamente
     user = create(:user)
-    brazilian_recipe_type = create(:recipe_type, name: 'Sobremesa')
     italian_recipe_type = create(:recipe_type, name: 'Prato Principal')
-    brazilian_cuisine = create(:cuisine, name: 'Brasileira')
     italian_cuisine = create(:cuisine, name: 'Italiana')
-    brazilian_recipe = create(:recipe, title: 'Bolo de cenoura', recipe_type: brazilian_recipe_type, cuisine: brazilian_cuisine, difficulty: 'Médio', cook_time: 60, user: user)
-    italian_recipe = create(:recipe, title: 'Macarrão Carbonara', recipe_type: italian_recipe_type, cuisine: italian_cuisine, difficulty: 'Difícil', cook_time: 30, user: user)
+    italian_recipe = create(:recipe, title: 'Macarrão Carbonara',
+                                     recipe_type: italian_recipe_type,
+                                     cuisine: italian_cuisine,
+                                     difficulty: 'Difícil', cook_time: 30,
+                                     user: user)
 
     # simula a ação do usuário
     visit root_path
@@ -45,8 +44,8 @@ feature 'Visitor view recipes by cuisine' do
   scenario 'and cuisine has no recipe' do
     # cria os dados necessários previamente
 
-    italian_cuisine = create(:cuisine, name:'Italiana')
-    brazilian_cuisine = create(:cuisine, name:'Brasileira')
+    italian_cuisine = create(:cuisine, name: 'Italiana')
+    brazilian_cuisine = create(:cuisine, name: 'Brasileira')
     brazilian_recipe = create(:recipe, cuisine: brazilian_cuisine)
 
     # simula a ação do usuário
@@ -55,6 +54,7 @@ feature 'Visitor view recipes by cuisine' do
 
     # expectativas do usuário após a ação
     expect(page).not_to have_content(brazilian_recipe.title)
-    expect(page).to have_content('Nenhuma receita encontrada para este tipo de cozinha')
+    expect(page).to have_content('Nenhuma receita encontrada para este tipo
+       de cozinha')
   end
 end

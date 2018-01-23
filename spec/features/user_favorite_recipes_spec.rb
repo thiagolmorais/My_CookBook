@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 feature 'User select favorite recipes' do
-
   scenario 'successfully' do
     user = create(:user)
-    recipe = create(:recipe, user: user)
+    create(:recipe, user: user)
 
     login_as(user)
     visit root_path
@@ -18,12 +17,12 @@ feature 'User select favorite recipes' do
     expect(page).not_to have_link('Salvar como Favorita')
   end
 
-
   scenario 'visit minhas receitas favorias' do
     user = create(:user, email: 'tf_lima@terra.com.br')
     another_user = create(:user, email: 'joao@terra.com.br')
     recipe = create(:recipe, title: 'Bolo de cenoura', user: user)
-    another_recipe = create(:recipe, title: 'Bolo de chocolate', user: another_user)
+    another_recipe = create(:recipe, title: 'Bolo de chocolate',
+                                     user: another_user)
 
     login_as(user)
     visit root_path
@@ -47,12 +46,11 @@ feature 'User select favorite recipes' do
 
     expect(page).to have_content('Nenhuma receita favorita')
     expect(page).not_to have_css('h1', text: recipe.title)
-
   end
 
   scenario 'delete favorite' do
     user = create(:user)
-    recipe = create(:recipe, user: user)
+    create(:recipe, user: user)
 
     login_as(user)
     visit root_path
@@ -72,7 +70,7 @@ feature 'User select favorite recipes' do
   scenario 'delete recipe favorited' do
     user = create(:user)
     recipe = create(:recipe, title: 'Bolo de cenoura', user: user)
-    another_recipe = create(:recipe, title: 'Bolo de chocolate',user: user)
+    another_recipe = create(:recipe, title: 'Bolo de chocolate', user: user)
     Favorite.create(user: user, recipe: recipe)
     Favorite.create(user: user, recipe: another_recipe)
 
@@ -87,6 +85,4 @@ feature 'User select favorite recipes' do
     expect(page).to have_link(another_recipe.title)
     expect(page).not_to have_link(recipe.title)
   end
-
-
 end

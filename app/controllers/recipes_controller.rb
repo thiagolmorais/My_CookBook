@@ -1,22 +1,19 @@
 class RecipesController < ApplicationController
-before_action :find_recipe, only: [:show, :edit, :update, :destroy, :favorite, :unfavorite, :share]
-before_action :require_login, only: [:edit]
-
-before_action :authenticate_user!, only: [:new, :favorites]
-
-  def index
-  end
+  before_action :find_recipe, only: [:show, :edit, :update, :destroy, :favorite,
+                                     :unfavorite, :share]
+  before_action :all_recipe_type, only: [:new, :create, :edit, :update]
+  before_action :require_login, only: [:edit]
+  before_action :authenticate_user!, only: [:new, :favorites]
 
   def show
     @cuisines = Cuisine.all
-    @recipe_types = RecipeType.all
     @favorites = Favorite.all
+    @recipe_types = RecipeType.all
   end
 
   def new
     @recipe = Recipe.new
     @cuisines = Cuisine.all
-    @recipe_type = RecipeType.all
     @users = User.all
   end
 
@@ -26,7 +23,6 @@ before_action :authenticate_user!, only: [:new, :favorites]
     if @recipe.save
       redirect_to recipe_path(Recipe.last)
     else
-      @recipe_type = RecipeType.all
       @cuisines = Cuisine.all
       flash.now[:error] = 'Você deve informar todos os dados da receita'
       render :new
@@ -35,7 +31,6 @@ before_action :authenticate_user!, only: [:new, :favorites]
 
   def edit
     @cuisines = Cuisine.all
-    @recipe_type = RecipeType.all
   end
 
   def update
@@ -44,7 +39,6 @@ before_action :authenticate_user!, only: [:new, :favorites]
       flash[:sucess] = 'Recita editada com sucesso'
       redirect_to recipe_path(@recipe.id)
     else
-      @recipe_type = RecipeType.all
       @cuisines = Cuisine.all
       flash.now[:error] = 'Você deve informar todos os dados da receita'
       render :edit
@@ -57,26 +51,19 @@ before_action :authenticate_user!, only: [:new, :favorites]
   end
 
   def destroy
-    if (current_user == @recipe.user)
-      @recipe.destroy
-      flash[:sucess] = 'Receita excluída com sucesso!'
-      redirect_to root_path
-    #else
-    #  flash[:error] = 'Você não pode excluir receitas enviadas por outros usuários.'
-    #  redirect_to root_path
-    end
+    return unless current_user == @recipe.user
+    @recipe.destroy
+    flash[:sucess] = 'Receita excluída com sucesso!'
+    redirect_to root_path
   end
 
   def favorites
     @cuisines = Cuisine.all
     @recipe_types = RecipeType.all
-    if current_user.favorite_recipes.any?
-      @recipes = current_user.favorite_recipes
-    else
-      @recipes = current_user.favorite_recipes
+    unless current_user.favorite_recipes.any?
       flash.now[:notice] = 'Nenhuma receita favorita'
-  end
-
+    end
+    @recipes = current_user.favorite_recipes
   end
 
   def favorite
@@ -105,17 +92,24 @@ before_action :authenticate_user!, only: [:new, :favorites]
     @recipe = Recipe.find(params[:id])
   end
 
+  def all_recipe_type
+    @recipe_type = RecipeType.all
+  end
+
   def recipe_params
-    user_id = current_user
+    @featured = featured
+    params.require(:recipe).permit(:title, :recipe_type_id,
+                                   :cuisine_id, :difficulty, :cook_time,
+                                   :people_serve, :ingredients, :method, :image,
+                                   :user_id)
+  end
+
+  def featured
     destaque = params[:featured]
     if destaque == '1'
       @featured = true
     else
       @featured = false
     end
-    params.require(:recipe).permit(:title, :recipe_type_id,
-                                   :cuisine_id, :difficulty, :cook_time,
-                                   :people_serve, :ingredients,:method, :image, :user_id)
   end
-
 end

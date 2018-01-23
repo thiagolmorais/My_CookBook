@@ -1,9 +1,7 @@
 class CuisinesController < ApplicationController
-
   def index
     @cuisines = Cuisine.all
   end
-
 
   def show
     id = params[:id]
@@ -26,9 +24,8 @@ class CuisinesController < ApplicationController
   end
 
   private
-  
+
   def cuisine_params
     params.require(:cuisine).permit(:name)
   end
-
 end

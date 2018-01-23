@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'User view last 6 recipes' do
-
   scenario 'successfully' do
     user = create(:user)
 
@@ -23,5 +22,4 @@ feature 'User view last 6 recipes' do
     expect(page).to have_css('div.last_recipes', text: recipe2.title)
     expect(page).not_to have_css('div.last_recipes', text: recipe1.title)
   end
-
 end

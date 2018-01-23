@@ -9,7 +9,7 @@ feature 'Visitor visit homepage' do
   end
 
   scenario 'and view recipe' do
-    #cria os dados necessários
+    # cria os dados necessários
     recipe = create(:recipe)
 
     # simula a ação do usuário
@@ -24,13 +24,16 @@ feature 'Visitor visit homepage' do
   end
 
   scenario 'and view recipes list' do
-    #cria os dados necessários
+    # cria os dados necessários
     user = create(:user)
     recipe_type = create(:recipe_type, name: 'Sobremesa')
-    recipe = create(:recipe, title: 'Bolo de cenoura', recipe_type: recipe_type, difficulty: 'Médio', cook_time: 60, user: user)
+    recipe = create(:recipe, title: 'Bolo de cenoura', recipe_type: recipe_type,
+                             difficulty: 'Médio', cook_time: 60, user: user)
     another_recipe_type = create(:recipe_type, name: 'Prato Principal')
-    another_recipe = create(:recipe, title:  'Feijoada', recipe_type: another_recipe_type, difficulty: 'Difícil', cook_time: 90, user: user)
-
+    another_recipe = create(:recipe, title: 'Feijoada',
+                                     recipe_type: another_recipe_type,
+                                     difficulty: 'Difícil', cook_time: 90,
+                                     user: user)
 
     # simula a ação do usuário
     visit root_path
@@ -78,12 +81,17 @@ feature 'Visitor visit homepage' do
 
     visit root_path
 
-    expect(page).to have_css('div.more_favorited_recipes', text: recipe3.title)
-    expect(page).to have_css('div.more_favorited_recipes', text: recipe5.title)
-    expect(page).to have_css('div.more_favorited_recipes', text: recipe2.title)
-    expect(page).not_to have_css('div.more_favorited_recipes', text: recipe1.title)
-    expect(page).not_to have_css('div.more_favorited_recipes', text: recipe4.title)
-    expect(page).not_to have_css('div.more_favorited_recipes', text: recipe6.title)
+    expect(page).to have_css('div.more_favorited_recipes',
+                             text: recipe3.title)
+    expect(page).to have_css('div.more_favorited_recipes',
+                             text: recipe5.title)
+    expect(page).to have_css('div.more_favorited_recipes',
+                             text: recipe2.title)
+    expect(page).not_to have_css('div.more_favorited_recipes',
+                                 text: recipe1.title)
+    expect(page).not_to have_css('div.more_favorited_recipes',
+                                 text: recipe4.title)
+    expect(page).not_to have_css('div.more_favorited_recipes',
+                                 text: recipe6.title)
   end
-
 end

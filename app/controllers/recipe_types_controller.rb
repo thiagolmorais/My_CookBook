@@ -1,9 +1,7 @@
 class RecipeTypesController < ApplicationController
-
   def index
     @recipe_types = RecipeType.all
   end
-
 
   def show
     id = params[:id]
@@ -23,13 +21,11 @@ class RecipeTypesController < ApplicationController
       flash.now[:error] = 'Você deve informar o nome do tipo de receita'
       render :new
     end
-
   end
 
   private
-  
+
   def recipe_type_params
     params.require(:recipe_type).permit(:name)
   end
-
 end

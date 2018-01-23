@@ -2,7 +2,6 @@ require 'rails_helper'
 
 feature 'successfully' do
   scenario 'sucess' do
-
     user = create(:user)
 
     visit root_path
@@ -16,7 +15,6 @@ feature 'successfully' do
 
     expect(page).to have_content("Bem-vindo #{user.username}")
     expect(page).not_to have_link('Entrar')
-
   end
 
   scenario 'sign out' do
@@ -29,8 +27,5 @@ feature 'successfully' do
     click_on 'Sair'
 
     expect(page).to have_link('Entrar')
-
   end
-
-
 end
