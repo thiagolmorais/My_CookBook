@@ -18,4 +18,14 @@ feature 'User register recipe_type' do
 
     expect(page).to have_content('Você deve informar o nome do tipo de receita')
   end
+
+  scenario 'show all recipe type' do
+    recipe_type = create(:recipe_type, name: 'Sobremesa')
+    another_recipe_type = create(:recipe_type, name: 'Jantar')
+    visit recipe_types_path
+
+    expect(page).to have_content(recipe_type.name)
+    expect(page).to have_content(another_recipe_type.name)
+  end
+
 end

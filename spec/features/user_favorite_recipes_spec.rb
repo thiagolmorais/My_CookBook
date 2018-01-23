@@ -38,6 +38,18 @@ feature 'User select favorite recipes' do
     expect(page).not_to have_css('h1', text: another_recipe.title)
   end
 
+  scenario 'receitas favorias is nil' do
+    user = create(:user, email: 'tf_lima@terra.com.br')
+    recipe = create(:recipe, title: 'Bolo de cenoura', user: user)
+
+    login_as(user)
+    visit favorites_recipes_path
+
+    expect(page).to have_content('Nenhuma receita favorita')
+    expect(page).not_to have_css('h1', text: recipe.title)
+
+  end
+
   scenario 'delete favorite' do
     user = create(:user)
     recipe = create(:recipe, user: user)

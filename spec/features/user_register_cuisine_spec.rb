@@ -18,4 +18,14 @@ feature 'User register cuisine' do
 
     expect(page).to have_content('Você deve informar o nome da cozinha')
   end
+
+  scenario 'show all cuisines' do
+    cuisine = create(:cuisine, name: 'Brasileira')
+    another_cuisine = create(:cuisine, name: 'Italiana')
+    visit cuisines_path
+
+    expect(page).to have_content(cuisine.name)
+    expect(page).to have_content(another_cuisine.name)
+  end
+
 end

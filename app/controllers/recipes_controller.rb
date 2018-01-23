@@ -5,8 +5,6 @@ before_action :require_login, only: [:edit]
 before_action :authenticate_user!, only: [:new, :favorites]
 
   def index
-    @recipes = Recipe.all
-    @cuisines = Cuisine.all
   end
 
   def show
@@ -63,9 +61,9 @@ before_action :authenticate_user!, only: [:new, :favorites]
       @recipe.destroy
       flash[:sucess] = 'Receita excluída com sucesso!'
       redirect_to root_path
-    else
-      flash[:error] = 'Você não pode excluir receitas enviadas por outros usuários.'
-      redirect_to root_path
+    #else
+    #  flash[:error] = 'Você não pode excluir receitas enviadas por outros usuários.'
+    #  redirect_to root_path
     end
   end
 

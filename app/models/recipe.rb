@@ -11,10 +11,7 @@ class Recipe < ApplicationRecord
 
 
   def favorite?(user)
-    if user
-      return user.favorite_recipes.include? self
-    end
-    false
+    user.favorite_recipes.include? self if user
   end
 
 end
