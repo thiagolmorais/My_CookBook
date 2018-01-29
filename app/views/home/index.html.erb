@@ -7,21 +7,32 @@
 
     <div class="col-md-2">
 
-      <p style="font-size:20px">Tipo<p>
-      <% @recipe_types.each do |recipe_type| %>
-        <h1 style="font-size:15px"><%= link_to recipe_type.name, recipe_type_path(recipe_type[:id]) %></h1>
-      <% end %>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><p class="subtitle">Tipo<p></h3>
+        </div>
+        <div class="panel-body">
+          <% @recipe_types.each do |recipe_type| %>
+          <h1 class="Paragraph"><%= link_to recipe_type.name, recipe_type_path(recipe_type[:id]) %></h1>
+          <% end %>
+        </div>
+      </div>
 
-      <p style="font-size:20px">Cozinha<p>
-      <% @cuisines.each do |cuisine| %>
-        <h1 style="font-size:15px"><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
-      <% end %>
-
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><p class="subtitle">Cozinha<p></h3>
+          </div>
+          <div class="panel-body">
+            <% @cuisines.each do |cuisine| %>
+            <h1 class="Paragraph"><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
+            <% end %>
+          </div>
+        </div>
     </div>
 
 
     <div class="col-md-5" >
-      <h1 style="font-size:30px">Últimas Receitas</h1>
+      <h1 class="title">Últimas Receitas</h1>
       <div class="last_recipes">
       <% @last_recipes.each do |recipe| %>
       <div class="col-md-6" >
@@ -30,7 +41,7 @@
       </div>
       <div class="col-md-6" >
 
-            <h1 style="font-size:20px">
+            <h1 class="subtitle">
               <%= link_to recipe.title, recipe_path(recipe[:id]), class: "last_recipes"%>
               <img><%= image_tag "star.png", width: "25", height: "25" if recipe.featured %></img>
             </h1>
@@ -52,7 +63,7 @@
 
 
     <div class="col-md-5">
-      <h1 style="font-size:30px">Favoritas dos usuários</h1>
+      <h1 class="title">Favoritas dos usuários</h1>
       <div class="more_favorited_recipes">
       <% @more_favorited.each do |recipe| %>
       <div class="col-md-6">

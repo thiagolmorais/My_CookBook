@@ -13,6 +13,7 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @recipe_types = RecipeType.all
     @cuisines = Cuisine.all
     @users = User.all
   end
@@ -24,6 +25,7 @@ class RecipesController < ApplicationController
       redirect_to recipe_path(Recipe.last)
     else
       @cuisines = Cuisine.all
+      @recipe_types = RecipeType.all
       flash.now[:error] = 'Você deve informar todos os dados da receita'
       render :new
     end
@@ -31,6 +33,7 @@ class RecipesController < ApplicationController
 
   def edit
     @cuisines = Cuisine.all
+    @recipe_types = RecipeType.all
   end
 
   def update
@@ -40,6 +43,7 @@ class RecipesController < ApplicationController
       redirect_to recipe_path(@recipe.id)
     else
       @cuisines = Cuisine.all
+      @recipe_types = RecipeType.all
       flash.now[:error] = 'Você deve informar todos os dados da receita'
       render :edit
     end
@@ -48,6 +52,8 @@ class RecipesController < ApplicationController
   def search
     @term = params[:term]
     @recipes = Recipe.where(title: @term)
+    @recipe_types = RecipeType.all
+    @cuisines = Cuisine.all
   end
 
   def destroy

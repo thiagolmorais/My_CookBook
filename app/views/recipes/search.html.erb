@@ -1,11 +1,59 @@
-<h1><%= "Resultado da busca por: #{@term}" %></h1>
+<div class="container">
+<div class="row">
 
-<% @recipes.each do |recipe| %>
-  <h1><%= link_to recipe.title, recipe_path(recipe[:id])%></h1>
-  <ul>
-    <li><%= recipe.recipe_type.name %></li>
-    <li><%= recipe.cuisine.name %></li>
-    <li><%= recipe.difficulty %></li>
-    <li><%= recipe.cook_time %> minutos</li>
-  </ul>
-<% end %>
+  <div class="col-md-2">
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><p class="subtitle">Tipo<p></h3>
+      </div>
+      <div class="panel-body">
+        <% @recipe_types.each do |recipe_type| %>
+        <h1 class="Paragraph"><%= link_to recipe_type.name, recipe_type_path(recipe_type[:id]) %></h1>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><p class="subtitle">Cozinha<p></h3>
+        </div>
+        <div class="panel-body">
+          <% @cuisines.each do |cuisine| %>
+          <h1 class="Paragraph"><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
+          <% end %>
+        </div>
+      </div>
+  </div>
+
+<div class="col-md-5" >
+  <h1 class="title"><%= "Resultado da busca por: #{@term}" %></h1>
+  <div>
+  <% @recipes.each do |recipe| %>
+  <div class="col-md-6" >
+    <br>
+    <img><%= image_tag recipe.image.url, width: "130", height: "130"  if recipe.image.file? %></img>
+  </div>
+  <div class="col-md-6" >
+
+        <h1 class="subtitle">
+          <%= link_to recipe.title, recipe_path(recipe[:id]), class: "last_recipes"%>
+          <img><%= image_tag "star.png", width: "25", height: "25" if recipe.featured %></img>
+        </h1>
+
+        <ul>
+          <li>Tipo: <%= recipe.recipe_type.name %></li>
+          <li>Cozinha: <%= recipe.cuisine.name %></li>
+          <li>Dificuldade: <%= recipe.difficulty %></li>
+          <li>Tempo de preparo: <%= recipe.cook_time %> minutos</li>
+        </ul>
+
+
+    </div>
+
+  <% end %>
+  </div>
+
+</div>
+</div>
+</div>

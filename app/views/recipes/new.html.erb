@@ -1,7 +1,34 @@
 <div class="container">
+<div class="row">
 
-  <h1>Cadastrar uma receita</h1>
+  <div class="col-md-2">
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><p class="subtitle">Tipo<p></h3>
+      </div>
+      <div class="panel-body">
+        <% @recipe_types.each do |recipe_type| %>
+        <h1 class="Paragraph"><%= link_to recipe_type.name, recipe_type_path(recipe_type[:id]) %></h1>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><p class="subtitle">Cozinha<p></h3>
+        </div>
+        <div class="panel-body">
+          <% @cuisines.each do |cuisine| %>
+          <h1 class="Paragraph"><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
+          <% end %>
+        </div>
+      </div>
+  </div>
+
+  <h1 class="title">Cadastrar uma receita</h1>
 
   <%= render 'form' %>
 
+</div>
 </div>

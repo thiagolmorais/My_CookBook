@@ -1,24 +1,36 @@
 <div class="container">
-  <h1>Minhas Receitas Favoritas</h1>
+
 
     <div class="row">
 
       <div class="col-md-2">
 
-        <p style="font-size:20px">Tipo<p>
-        <% @recipe_types.each do |recipe_type| %>
-          <h1 style="font-size:15px"><%= link_to recipe_type.name, recipe_type_path(recipe_type[:id]) %></h1>
-        <% end %>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title"><p class="subtitle">Tipo<p></h3>
+          </div>
+          <div class="panel-body">
+            <% @recipe_types.each do |recipe_type| %>
+            <h1 class="Paragraph"><%= link_to recipe_type.name, recipe_type_path(recipe_type[:id]) %></h1>
+            <% end %>
+          </div>
+        </div>
 
-        <p style="font-size:20px">Cozinha<p>
-        <% @cuisines.each do |cuisine| %>
-          <h1 style="font-size:15px"><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
-        <% end %>
-
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title"><p class="subtitle">Cozinha<p></h3>
+            </div>
+            <div class="panel-body">
+              <% @cuisines.each do |cuisine| %>
+              <h1 class="Paragraph"><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
+              <% end %>
+            </div>
+          </div>
       </div>
 
 
       <div class="col-md-5" >
+        <h1 class="title">Minhas Receitas Favoritas</h1>
         <% @recipes.each do |recipe| %>
         <div class="col-md-6" >
           <br>
@@ -46,9 +58,5 @@
 
       </div>
 
-
-      <div class="col-md-5">
-
-    </div>
   </div>
   </div>
