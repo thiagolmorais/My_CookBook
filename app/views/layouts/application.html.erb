@@ -10,7 +10,7 @@
 
   <body>
 
-    <div class="img-back1">
+    <div class="img-header">
 		  <div class="container">
 			  <div class="header-top">
 				  <div class="row">
@@ -43,7 +43,7 @@
               <div class="col-md-6 col-sm-6">
                 <div class="col-md-12 col-sm-12">
                   <br>
-                  <br> 
+                  <br>
                   <p class="logon" ><%= "Bem-vindo #{current_user.username}" if user_signed_in? %></p>
                   <br>
                 </div>
@@ -104,19 +104,22 @@
 			<!-- Header End -->
 
 
-    <div class="container">
+
+
+
+    <main class="img-background">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-    </div>
-
-
-    <main>
       <%= yield %>
     </main>
 
     <aside>
       <%= yield :aside %>
     </aside>
+
+    <div class="img-footer">
+    </div>
+
 
   </body>
 </html>
