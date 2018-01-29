@@ -6,7 +6,9 @@ class RecipeTypesController < ApplicationController
   def show
     id = params[:id]
     @recipe_type = RecipeType.find(id)
+    @recipe_types = RecipeType.all
     @recipes = Recipe.all
+    @cuisines = Cuisine.all
   end
 
   def new

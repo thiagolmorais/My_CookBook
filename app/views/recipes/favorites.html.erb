@@ -11,7 +11,7 @@
           </div>
           <div class="panel-body">
             <% @recipe_types.each do |recipe_type| %>
-            <h1 class="Paragraph"><%= link_to recipe_type.name, recipe_type_path(recipe_type[:id]) %></h1>
+            <h1 class="paragraph"><%= link_to recipe_type.name, recipe_type_path(recipe_type[:id]) %></h1>
             <% end %>
           </div>
         </div>
@@ -22,7 +22,7 @@
             </div>
             <div class="panel-body">
               <% @cuisines.each do |cuisine| %>
-              <h1 class="Paragraph"><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
+              <h1 class="paragraph"><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
               <% end %>
             </div>
           </div>
