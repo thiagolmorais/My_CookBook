@@ -10,59 +10,116 @@
 
   <body>
 
+    <div class="img-header">
+		  <div class="container">
+			  <div class="header-top">
+				  <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <div class="col-md-2 col-sm-2">
+              </div>
+              <div class="col-md-10 col-sm-10">
+                  <a href="/">
+    								<!-- Logo area -->
+    								<div class="logo">
+    									<!-- Heading -->
+    									<h1 class="cookbook" >CookBook</h1>
+    									<!-- Paragraph -->
+    									<p class="cookbook-text" >Bem-vindo ao maior livro de receitas online</p>
+    								</div>
+    							</a>
+  							</div>
+                <div class="col-md-2 col-sm-2">
+                </div>
+                <div class="col-md-10 col-sm-10">
+                  <%= form_tag(search_recipes_path, method: 'get', class: "navbar-form navbar-left") do %>
+                  <div class="form-group">
+                    <%= label_tag :term, 'Busca', class: 'hide' %>
+                  </div>
+                    <%= text_field_tag :term, "", class: "form-control", placeholder: "Busca"  %>
+                    <%= submit_tag 'Buscar', class: "btn btn-default" %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <div class="col-md-12 col-sm-12">
+                  <br>
+                  <br>
+                  <p class="logon" ><%= "Bem-vindo #{current_user.username}" if user_signed_in? %></p>
+                  <br>
+                </div>
 
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to 'Social Recipes', root_path, class: "navbar-brand" %>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-
-          </ul>
-
-          <%= form_tag(search_recipes_path, method: 'get', class: "navbar-form navbar-left") do %>
-          <div class="form-group">
-            <%= label_tag :term, 'Busca', class: 'hide' %>
-          </div>
-            <%= text_field_tag :term, "", class: "form-control", placeholder: "Busca"  %>
-            <%= submit_tag 'Buscar', class: "btn btn-default" %>
-          <% end %>
 
 
+              <div class="col-md-12 col-sm-12">
+  							<!-- Navigation -->
+  							<nav class="navbar navbar-default navbar-right" role="navigation">
+  								<div class="container-fluid">
+  									<!-- Brand and toggle get grouped for better mobile display -->
+  									<div class="navbar-header">
+  										<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+  											<span class="sr-only">Toggle navigation</span>
+  											<span class="icon-bar"></span>
+  											<span class="icon-bar"></span>
+  											<span class="icon-bar"></span>
+  										</button>
+  									</div>
 
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to 'Minhas recitas favoritas', favorites_recipes_path if user_signed_in? %></li>
-            <li><%= link_to 'Enviar uma receita', new_recipe_path if user_signed_in? %></li>
-            <li><%= link_to 'Entrar', new_user_session_path  unless user_signed_in? %></li>
-            <li><%= link_to 'Sair', destroy_user_session_path, method: :delete  if user_signed_in? %></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
+  									<!-- Collect the nav links, forms, and other content for toggling -->
+  									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  										<ul class="nav navbar-nav">
+                        <ul class="nav navbar-nav navbar-right">
+                          <li><%= link_to 'Enviar uma receita', new_recipe_path if user_signed_in? %></li>
+                          <li><%= link_to 'Entrar', new_user_session_path  unless user_signed_in? %></li>
+                          <li><%= link_to 'Sair', destroy_user_session_path, method: :delete  if user_signed_in? %></li>
+                        </ul>
+                        <li><a href="/"><img src="img/nav-menu/nav1.jpg" class="img-responsive" alt="" /> Home</a></li>
 
-    <div class="container">
+
+  											<li class="dropdown">
+  												<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/nav-menu/nav4.jpg" class="img-responsive" alt="" />Minhas Receitas<b class="caret"></b></a>
+  												<ul class="dropdown-menu">
+  													<li><a href="items.html">Enviadas</a></li>
+  													<li><%= link_to 'Favoritas', favorites_recipes_path if user_signed_in? %></li>
+  													<li><a href="checkout.html">Destasque</a></li>
+  												</ul>
+  											</li>
+  										</ul>
+  									</div><!-- /.navbar-collapse -->
+  								</div><!-- /.container-fluid -->
+  							</nav>
+  						</div>
+
+            </div>
+
+
+
+						</div>
+
+
+					</div>
+
+				</div> <!-- / .container -->
+			</div>
+
+			<!-- Header End -->
+
+
+
+
+
+    <main class="img-background">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-    </div>
-
-
-    <main>
       <%= yield %>
     </main>
 
     <aside>
       <%= yield :aside %>
     </aside>
+
+    <div class="img-footer">
+    </div>
+
 
   </body>
 </html>

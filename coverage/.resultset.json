@@ -280,8 +280,20 @@
         2,
         null,
         null
+      ],
+      "/home/thiago/my_cookbook/app/assets/channels/application_cable/connection.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/thiago/my_cookbook/app/assets/channels/application_cable/channel.rb": [
+        0,
+        0,
+        0,
+        0
       ]
     },
-    "timestamp": 1516681189
+    "timestamp": 1517155061
   }
 }
