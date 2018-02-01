@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/campuscode02/ThiagoM/my_cookbook/app/mailers/recipes_mailer.rb": [
+      "/home/thiago/my_cookbook/app/mailers/recipes_mailer.rb": [
         null,
         1,
         1,
@@ -13,13 +13,13 @@
         null,
         null
       ],
-      "/Users/campuscode02/ThiagoM/my_cookbook/app/mailers/application_mailer.rb": [
+      "/home/thiago/my_cookbook/app/mailers/application_mailer.rb": [
         1,
         1,
         1,
         null
       ],
-      "/Users/campuscode02/ThiagoM/my_cookbook/app/controllers/home_controller.rb": [
+      "/home/thiago/my_cookbook/app/controllers/home_controller.rb": [
         1,
         1,
         46,
@@ -34,7 +34,7 @@
         null,
         null
       ],
-      "/Users/campuscode02/ThiagoM/my_cookbook/app/controllers/application_controller.rb": [
+      "/home/thiago/my_cookbook/app/controllers/application_controller.rb": [
         1,
         1,
         1,
@@ -61,7 +61,7 @@
         null,
         null
       ],
-      "/Users/campuscode02/ThiagoM/my_cookbook/app/models/recipe.rb": [
+      "/home/thiago/my_cookbook/app/models/recipe.rb": [
         1,
         1,
         1,
@@ -81,39 +81,39 @@
         null,
         null
       ],
-      "/Users/campuscode02/ThiagoM/my_cookbook/app/models/cuisine.rb": [
+      "/home/thiago/my_cookbook/app/models/cuisine.rb": [
         1,
         1,
         null
       ],
-      "/Users/campuscode02/ThiagoM/my_cookbook/app/models/recipe_type.rb": [
+      "/home/thiago/my_cookbook/app/models/recipe_type.rb": [
         1,
         1,
         null
       ],
-      "/Users/campuscode02/ThiagoM/my_cookbook/app/models/favorite.rb": [
+      "/home/thiago/my_cookbook/app/models/favorite.rb": [
         1,
         1,
         1,
         1,
         null
       ],
-      "/Users/campuscode02/ThiagoM/my_cookbook/app/controllers/recipes_controller.rb": [
+      "/home/thiago/my_cookbook/app/controllers/recipes_controller.rb": [
         1,
         1,
         null,
         1,
+        1,
+        null,
         1,
         1,
         null,
         1,
         28,
         28,
-        28,
         null,
         null,
         1,
-        5,
         5,
         5,
         5,
@@ -128,12 +128,10 @@
         1,
         1,
         1,
-        1,
         null,
         null,
         null,
         1,
-        2,
         2,
         null,
         null,
@@ -146,12 +144,10 @@
         1,
         1,
         1,
-        1,
         null,
         null,
         null,
         1,
-        2,
         2,
         2,
         2,
@@ -165,7 +161,6 @@
         null,
         null,
         1,
-        4,
         4,
         4,
         1,
@@ -204,6 +199,10 @@
         null,
         null,
         1,
+        50,
+        null,
+        null,
+        1,
         7,
         7,
         null,
@@ -214,14 +213,10 @@
         1,
         7,
         7,
-        1,
-        null,
-        6,
-        null,
         null,
         null
       ],
-      "/Users/campuscode02/ThiagoM/my_cookbook/app/controllers/cuisines_controller.rb": [
+      "/home/thiago/my_cookbook/app/controllers/cuisines_controller.rb": [
         1,
         1,
         1,
@@ -256,7 +251,7 @@
         null,
         null
       ],
-      "/Users/campuscode02/ThiagoM/my_cookbook/app/controllers/recipe_types_controller.rb": [
+      "/home/thiago/my_cookbook/app/controllers/recipe_types_controller.rb": [
         1,
         1,
         1,
@@ -292,6 +287,6 @@
         null
       ]
     },
-    "timestamp": 1517236584
+    "timestamp": 1517454748
   }
 }

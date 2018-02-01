@@ -33,9 +33,9 @@
   <div class="col-md-5" >
     <h1 class="title"><%= @cuisine.name %></h1>
     <div class="last_recipes">
-    <div class="col-md-6" >
       <% i = 0 %>
       <% @recipes.each do |recipe| %>
+    <div class="col-md-6" >
       <br>
       <% if (recipe.cuisine.name == @cuisine.name) %>
         <% i = i+1 %>
@@ -44,11 +44,9 @@
     <div class="col-md-6" >
 
           <h1 class="subtitle">
-
             <%= link_to recipe.title, recipe_path(recipe[:id]), class: "last_recipes"%>
             <img><%= image_tag "star.png", width: "25", height: "25" if recipe.featured %></img>
           </h1>
-
           <ul>
             <li>Tipo: <%= recipe.recipe_type.name %></li>
             <li>Cozinha: <%= recipe.cuisine.name %></li>

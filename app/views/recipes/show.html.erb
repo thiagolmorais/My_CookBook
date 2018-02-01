@@ -61,55 +61,90 @@
 
 </div>
 </div>
-<hr>
+
 <div class="container">
   <div class="row">
 
     <div class="col-md-2">
     </div>
 
-    <div class="col-md-4">
-      <% if user_signed_in? %>
-        <% if @recipe.favorite?(current_user) %>
-          <%= link_to 'Excluir das Favoritas', unfavorite_recipe_path(@recipe), class:"btn btn-warning", method: :delete %>
-        <% else %>
-          <%= link_to 'Salvar como Favorita', favorite_recipe_path(@recipe), class:"btn btn-info", method: :post %>
-        <% end %>
-      <% end %>
+    <div class="col-md-10">
 
 
+      <div class="col-md-3">
+        <div align="center">
+          <img><%= image_tag "show/icons8-voltar-40.png", width: "25", height: "25" %></img>
+          <br>
+          <%= link_to 'Voltar', root_path %>
+        </div>
+      </div>
 
-    <div>
-      <%= link_to 'Editar', edit_recipe_path, class:"btn btn-success" if (current_user == @recipe.user) %>
-    </div>
+      <div class="col-md-3">
+        <div align="center">
+          <% if user_signed_in? %>
+            <% if @recipe.favorite?(current_user) %>
 
-    <div>
-      <%= link_to 'Excluir Receita', @recipe, method: :delete, class:"btn btn-danger" if (current_user == @recipe.user) %>
-    </div>
+              <img><%= image_tag "show/icons8-copas-40.png", width: "25", height: "25", align: 'center' %></img>
+              <br>
+              <%= link_to 'Excluir das Favoritas', unfavorite_recipe_path(@recipe), method: :delete %>
+            <% else %>
+              <img><%= image_tag "show/icons8-copas-40 (1).png", width: "25", height: "25" %></img>
+              <br>
+              <%= link_to 'Salvar como Favorita', favorite_recipe_path(@recipe), method: :post %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div align="center">
+          <img><%= image_tag "show/icons8-editar-40.png", width: "25", height: "25" %></img>
+          <br>
+          <%= link_to 'Editar', edit_recipe_path if (current_user == @recipe.user) %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div align="center">
+          <img><%= image_tag "show/icons8-cancelar-40.png", width: "25", height: "25" %></img>
+          <br>
+          <%= link_to 'Excluir Receita', @recipe, method: :delete if (current_user == @recipe.user) %>
+        </div>
+      </div>
 
-    <div>
-      <%= link_to 'Voltar', root_path, class:"btn btn-default" %>
-    </div>
   </div>
+</div>
+</div>
+<hr>
+<div class="container">
+  <div class="row">
+  <div class="col-md-3">
+  </div>
+
     <div class="col-md-6">
-      <div>
+      <h1 class="paragraph">Enviar esta receita por email.</h1>
+      <div class="panel panel-default">
+        <div class="panel-body">
+      <div align="center">
         <%= form_tag(share_recipe_path, method: "post") do %>
         <div class="form-group">
           <%= label_tag :email, "Email", class: "col-sm-2 control-label" %>
-          <%= email_field_tag(:email) %>
+          <%= email_field_tag :email, '', class: "form-control" %>
         </div>
         <div class="form-group">
           <%= label_tag :message, "Mensagem", class: "col-sm-2 control-label" %>
-          <%= text_area_tag(:message) %>
+          <%= text_area_tag :message,'', class: "form-control" %>
         </div>
-        <div class="form-group">
-          <%= submit_tag 'Enviar', class: "btn btn-success" %>
+
+        <div align="right">
+          <div class="form-group">
+            <%= submit_tag 'Enviar', class: "btn btn-success" %>
+            <% end %>
+          </div>
         </div>
-        <% end %>
       </div>
     </div>
-
-
-
+  </div>
+  </div>
+    <div class="col-md-3">
+    </div>
   </div>
 </div>

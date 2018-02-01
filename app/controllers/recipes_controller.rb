@@ -2,11 +2,12 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy, :favorite,
                                      :unfavorite, :share]
   before_action :all_recipe_type, only: [:new, :create, :edit, :update]
+  before_action :all_cuisines, only: [:show, :new, :create, :edit, :update,
+                                      :search, :favorites]
   before_action :require_login, only: [:edit]
   before_action :authenticate_user!, only: [:new, :favorites]
 
   def show
-    @cuisines = Cuisine.all
     @favorites = Favorite.all
     @recipe_types = RecipeType.all
   end
@@ -14,7 +15,6 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     @recipe_types = RecipeType.all
-    @cuisines = Cuisine.all
     @users = User.all
   end
 
@@ -24,7 +24,6 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(Recipe.last)
     else
-      @cuisines = Cuisine.all
       @recipe_types = RecipeType.all
       flash.now[:error] = 'Você deve informar todos os dados da receita'
       render :new
@@ -32,7 +31,6 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @cuisines = Cuisine.all
     @recipe_types = RecipeType.all
   end
 
@@ -42,7 +40,6 @@ class RecipesController < ApplicationController
       flash[:sucess] = 'Recita editada com sucesso'
       redirect_to recipe_path(@recipe.id)
     else
-      @cuisines = Cuisine.all
       @recipe_types = RecipeType.all
       flash.now[:error] = 'Você deve informar todos os dados da receita'
       render :edit
@@ -53,7 +50,6 @@ class RecipesController < ApplicationController
     @term = params[:term]
     @recipes = Recipe.where(title: @term)
     @recipe_types = RecipeType.all
-    @cuisines = Cuisine.all
   end
 
   def destroy
@@ -64,7 +60,6 @@ class RecipesController < ApplicationController
   end
 
   def favorites
-    @cuisines = Cuisine.all
     @recipe_types = RecipeType.all
     unless current_user.favorite_recipes.any?
       flash.now[:notice] = 'Nenhuma receita favorita'
@@ -102,6 +97,10 @@ class RecipesController < ApplicationController
     @recipe_type = RecipeType.all
   end
 
+  def all_cuisines
+    @cuisines = Cuisine.all
+  end
+
   def recipe_params
     @featured = featured
     params.require(:recipe).permit(:title, :recipe_type_id,
@@ -112,10 +111,6 @@ class RecipesController < ApplicationController
 
   def featured
     destaque = params[:featured]
-    if destaque == '1'
-      @featured = true
-    else
-      @featured = false
-    end
+      @featured = true if destaque == '1'
   end
 end
