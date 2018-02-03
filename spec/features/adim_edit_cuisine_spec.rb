@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Admin update recipe' do
+feature 'Admin update cuisine' do
   scenario 'successfully' do
     # cria os dados necessários
     cuisine = create(:cuisine)
@@ -13,7 +13,7 @@ feature 'Admin update recipe' do
 
     expect(page).to have_css('h1', text: 'Africana')
   end
-  scenario 'and must fill in name' do
+  scenario 'and fill name empty' do
     # cria os dados necessários
     cuisine = create(:cuisine)
 

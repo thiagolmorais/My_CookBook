@@ -37,7 +37,7 @@ class CuisinesController < ApplicationController
       else
         flash.now[:error] = 'A cozinha já está cadastrada' if @cuisine.name?
         flash.now[:error] = 'Você deve informar o nome da cozinha' unless @cuisine.name?
-        render :new
+        render :edit
       end
     end
 
