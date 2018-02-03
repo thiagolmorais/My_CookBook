@@ -26,6 +26,21 @@ class CuisinesController < ApplicationController
     end
   end
 
+    def edit
+      @cuisine = Cuisine.find(params[:id])
+    end
+
+    def update
+      @cuisine = Cuisine.new(cuisine_params)
+      if @cuisine.update(cuisine_params)
+        redirect_to cuisine_path(Cuisine.last)
+      else
+        flash.now[:error] = 'A cozinha já está cadastrada' if @cuisine.name?
+        flash.now[:error] = 'Você deve informar o nome da cozinha' unless @cuisine.name?
+        render :new
+      end
+    end
+
   private
 
   def cuisine_params

@@ -31,7 +31,11 @@
 
 
   <div class="col-md-5" >
-    <h1 class="title"><%= @cuisine.name %></h1>
+    <div>
+    <h1 class="title"><%= @cuisine.name %> <img><%= image_tag "show/icons8-editar-40.png", width: "25", height: "25" %></img>
+    <%= link_to 'Editar', edit_cuisine_path, class: 'paragraph' %></h1>
+
+      </div>
     <div class="last_recipes">
       <% i = 0 %>
       <% @recipes.each do |recipe| %>
@@ -53,8 +57,6 @@
             <li>Dificuldade: <%= recipe.difficulty %></li>
             <li>Tempo de preparo: <%= recipe.cook_time %> minutos</li>
           </ul>
-
-
       </div>
     <% end %>
     <% end %>
