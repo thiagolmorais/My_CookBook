@@ -6,19 +6,19 @@ feature 'User view last 6 recipes' do
     cuisine = create(:cuisine)
     recipe_type = create(:recipe_type)
     recipe1 = create(:recipe, title: 'Bolo de cenoura', user: user,
-                              cuisine: cuisine, recipe_type:recipe_type)
+                              cuisine: cuisine, recipe_type: recipe_type)
     recipe2 = create(:recipe, title: 'Bolo de laranja', user: user,
-                              cuisine: cuisine, recipe_type:recipe_type)
+                              cuisine: cuisine, recipe_type: recipe_type)
     recipe3 = create(:recipe, title: 'Bolo de chocolate', user: user,
-                              cuisine: cuisine, recipe_type:recipe_type)
+                              cuisine: cuisine, recipe_type: recipe_type)
     recipe4 = create(:recipe, title: 'Bolo formigueiro', user: user,
-                              cuisine: cuisine, recipe_type:recipe_type)
+                              cuisine: cuisine, recipe_type: recipe_type)
     recipe5 = create(:recipe, title: 'Bolo de maça com canela', user: user,
-                              cuisine: cuisine, recipe_type:recipe_type)
+                              cuisine: cuisine, recipe_type: recipe_type)
     recipe6 = create(:recipe, title: 'Bolo de banana', user: user,
-                              cuisine: cuisine, recipe_type:recipe_type)
+                              cuisine: cuisine, recipe_type: recipe_type)
     recipe7 = create(:recipe, title: 'Bolo de milho', user: user,
-                              cuisine: cuisine, recipe_type:recipe_type)
+                              cuisine: cuisine, recipe_type: recipe_type)
 
     visit root_path
 

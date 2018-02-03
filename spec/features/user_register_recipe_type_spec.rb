@@ -28,7 +28,7 @@ feature 'User register recipe_type' do
     expect(page).to have_content(another_recipe_type.name)
   end
   scenario 'and must fill in name duplicate' do
-    recipe_type = create(:recipe_type, name: 'Sobremesa')
+    create(:recipe_type, name: 'Sobremesa')
 
     visit new_recipe_type_path
     fill_in 'Nome', with: 'Sobremesa'

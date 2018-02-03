@@ -28,7 +28,7 @@ feature 'User register cuisine' do
     expect(page).to have_content(another_cuisine.name)
   end
   scenario 'and must fill in name duplicate' do
-    cuisine = create(:cuisine, name: 'Brasileira')
+    create(:cuisine, name: 'Brasileira')
 
     visit new_cuisine_path
     fill_in 'Nome', with: 'Brasileira'

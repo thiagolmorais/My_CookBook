@@ -111,6 +111,6 @@ class RecipesController < ApplicationController
 
   def featured
     destaque = params[:featured]
-      @featured = true if destaque == '1'
+    @featured = true if destaque == '1'
   end
 end

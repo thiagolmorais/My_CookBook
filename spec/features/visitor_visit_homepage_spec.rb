@@ -68,17 +68,17 @@ feature 'Visitor visit homepage' do
     recipe_type = create(:recipe_type)
     cuisine = create(:cuisine)
     recipe1 = create(:recipe, title: 'Bolo1', user: user1, cuisine: cuisine,
-                              recipe_type:recipe_type)
+                              recipe_type: recipe_type)
     recipe2 = create(:recipe, title: 'Bolo2', user: user1, cuisine: cuisine,
-                              recipe_type:recipe_type)
+                              recipe_type: recipe_type)
     recipe3 = create(:recipe, title: 'Bolo3', user: user1, cuisine: cuisine,
-                              recipe_type:recipe_type)
+                              recipe_type: recipe_type)
     recipe4 = create(:recipe, title: 'Bolo4', user: user1, cuisine: cuisine,
-                              recipe_type:recipe_type)
+                              recipe_type: recipe_type)
     recipe5 = create(:recipe, title: 'Bolo5', user: user1, cuisine: cuisine,
-                              recipe_type:recipe_type)
+                              recipe_type: recipe_type)
     recipe6 = create(:recipe, title: 'Bolo6', user: user1, cuisine: cuisine,
-                              recipe_type:recipe_type)
+                              recipe_type: recipe_type)
     Favorite.create(user: user1, recipe: recipe3)
     Favorite.create(user: user2, recipe: recipe3)
     Favorite.create(user: user3, recipe: recipe3)

@@ -20,13 +20,9 @@ class CuisinesController < ApplicationController
     if @cuisine.save
       redirect_to cuisine_path(Cuisine.last)
     else
-      if @cuisine.name?
-        flash.now[:error] = 'A cozinha já está cadastrada'
-        render :new
-      else
-        flash.now[:error] = 'Você deve informar o nome da cozinha'
-        render :new
-      end
+      flash.now[:error] = 'A cozinha já está cadastrada' if @cuisine.name?
+      flash.now[:error] = 'Você deve informar o nome da cozinha' unless @cuisine.name?
+      render :new
     end
   end
 
