@@ -19,10 +19,14 @@ feature 'User select favorite recipes' do
 
   scenario 'visit minhas receitas favorias' do
     user = create(:user, email: 'tf_lima@terra.com.br')
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
     another_user = create(:user, email: 'joao@terra.com.br')
-    recipe = create(:recipe, title: 'Bolo de cenoura', user: user)
+    recipe = create(:recipe, title: 'Bolo de cenoura', user: user,
+                             cuisine: cuisine, recipe_type: recipe_type)
     another_recipe = create(:recipe, title: 'Bolo de chocolate',
-                                     user: another_user)
+                                     user: another_user, cuisine: cuisine,
+                                     recipe_type: recipe_type)
 
     login_as(user)
     visit root_path
@@ -69,8 +73,12 @@ feature 'User select favorite recipes' do
 
   scenario 'delete recipe favorited' do
     user = create(:user)
-    recipe = create(:recipe, title: 'Bolo de cenoura', user: user)
-    another_recipe = create(:recipe, title: 'Bolo de chocolate', user: user)
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    recipe = create(:recipe, title: 'Bolo de cenoura', user: user,
+                             cuisine: cuisine, recipe_type: recipe_type)
+    another_recipe = create(:recipe, title: 'Bolo de chocolate', user: user,
+                                     cuisine: cuisine, recipe_type: recipe_type)
     Favorite.create(user: user, recipe: recipe)
     Favorite.create(user: user, recipe: another_recipe)
 

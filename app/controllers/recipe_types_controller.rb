@@ -20,8 +20,13 @@ class RecipeTypesController < ApplicationController
     if @recipe_type.save
       redirect_to recipe_type_path(RecipeType.last)
     else
-      flash.now[:error] = 'Você deve informar o nome do tipo de receita'
-      render :new
+      if @recipe_type.name?
+        flash.now[:error] = 'O tipo de receita já está cadastrado'
+        render :new
+      else
+        flash.now[:error] = 'Você deve informar o nome do tipo de receita'
+        render :new
+      end
     end
   end
 

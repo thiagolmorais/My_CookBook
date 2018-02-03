@@ -27,14 +27,16 @@ feature 'Visitor visit homepage' do
   scenario 'and view recipes list' do
     # cria os dados necessários
     user = create(:user)
+    cuisine = create(:cuisine)
     recipe_type = create(:recipe_type, name: 'Sobremesa')
     recipe = create(:recipe, title: 'Bolo de cenoura', recipe_type: recipe_type,
-                             difficulty: 'Médio', cook_time: 60, user: user)
+                             difficulty: 'Médio', cook_time: 60, user: user,
+                             cuisine: cuisine)
     another_recipe_type = create(:recipe_type, name: 'Prato Principal')
     another_recipe = create(:recipe, title: 'Feijoada',
                                      recipe_type: another_recipe_type,
                                      difficulty: 'Difícil', cook_time: 90,
-                                     user: user)
+                                     user: user, cuisine: cuisine)
 
     # simula a ação do usuário
     visit root_path
@@ -63,12 +65,20 @@ feature 'Visitor visit homepage' do
     user8 = create(:user, email: 'user8@bol.com')
     user9 = create(:user, email: 'user9@bol.com')
     user10 = create(:user, email: 'user10@bol.com')
-    recipe1 = create(:recipe, title: 'Bolo1', user: user1)
-    recipe2 = create(:recipe, title: 'Bolo2', user: user1)
-    recipe3 = create(:recipe, title: 'Bolo3', user: user1)
-    recipe4 = create(:recipe, title: 'Bolo4', user: user1)
-    recipe5 = create(:recipe, title: 'Bolo5', user: user1)
-    recipe6 = create(:recipe, title: 'Bolo6', user: user1)
+    recipe_type = create(:recipe_type)
+    cuisine = create(:cuisine)
+    recipe1 = create(:recipe, title: 'Bolo1', user: user1, cuisine: cuisine,
+                              recipe_type:recipe_type)
+    recipe2 = create(:recipe, title: 'Bolo2', user: user1, cuisine: cuisine,
+                              recipe_type:recipe_type)
+    recipe3 = create(:recipe, title: 'Bolo3', user: user1, cuisine: cuisine,
+                              recipe_type:recipe_type)
+    recipe4 = create(:recipe, title: 'Bolo4', user: user1, cuisine: cuisine,
+                              recipe_type:recipe_type)
+    recipe5 = create(:recipe, title: 'Bolo5', user: user1, cuisine: cuisine,
+                              recipe_type:recipe_type)
+    recipe6 = create(:recipe, title: 'Bolo6', user: user1, cuisine: cuisine,
+                              recipe_type:recipe_type)
     Favorite.create(user: user1, recipe: recipe3)
     Favorite.create(user: user2, recipe: recipe3)
     Favorite.create(user: user3, recipe: recipe3)
