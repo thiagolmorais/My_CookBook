@@ -14,7 +14,7 @@
 		  <div class="container">
 			  <div class="header-top">
 				  <div class="row">
-            <div class="col-md-6 col-sm-6">
+            <div class="col-md-5 col-sm-5">
               <div class="col-md-2 col-sm-2">
               </div>
               <div class="col-md-10 col-sm-10">
@@ -40,12 +40,10 @@
                   <% end %>
                 </div>
               </div>
-              <div class="col-md-6 col-sm-6">
+              <div class="col-md-7 col-sm-7">
                 <div class="col-md-12 col-sm-12">
                   <br>
-                  <br>
                   <p class="logon" ><%= "Bem-vindo #{current_user.username}" if user_signed_in? %></p>
-                  <br>
                 </div>
 
 
@@ -70,7 +68,8 @@
                         <ul class="nav navbar-nav navbar-right">
                           <li><%= link_to 'Home', root_path %></li>
                           <li><%= link_to 'Minhas Receitas Favoritas', favorites_recipes_path if user_signed_in? %></li>
-                          <li><%= link_to 'Enviar uma receita', new_recipe_path if user_signed_in? %></li>
+                          <li><%= link_to 'Enviar receita', new_recipe_path if user_signed_in? %></li>
+                            <li><%= link_to 'Perfil do usuário', edit_user_registration_path if user_signed_in? %></li>
                           <li><%= link_to 'Entrar', new_user_session_path  unless user_signed_in? %></li>
                           <li><%= link_to 'Sair', destroy_user_session_path, method: :delete  if user_signed_in? %></li>
                         </ul>

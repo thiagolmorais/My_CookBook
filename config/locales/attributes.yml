@@ -18,5 +18,6 @@ pt-BR:
         name: 'Nome'
       user:
         username: 'Nome'
-        email: 'Email'
-        password: 'Senha'
+        city: 'Cidade'
+        facebook: 'Facebook'
+        twitter: 'Twitter'

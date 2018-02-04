@@ -96,18 +96,21 @@
         </div>
       </div>
       <div class="col-md-3">
+        <% if (current_user == @recipe.user) %>
         <div align="center">
           <img><%= image_tag "show/icons8-editar-40.png", width: "25", height: "25" %></img>
           <br>
-          <%= link_to 'Editar', edit_recipe_path if (current_user == @recipe.user) %>
+          <%= link_to 'Editar', edit_recipe_path %>
         </div>
+
       </div>
       <div class="col-md-3">
         <div align="center">
           <img><%= image_tag "show/icons8-cancelar-40.png", width: "25", height: "25" %></img>
           <br>
-          <%= link_to 'Excluir Receita', @recipe, method: :delete if (current_user == @recipe.user) %>
+          <%= link_to 'Excluir Receita', @recipe, method: :delete %>
         </div>
+        <% end %>
       </div>
 
   </div>

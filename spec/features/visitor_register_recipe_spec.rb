@@ -10,7 +10,7 @@ feature 'Visitor register recipe' do
     # simula a ação do usuário
     login_as(user)
     visit root_path
-    click_on 'Enviar uma receita'
+    click_on 'Enviar receita'
 
     fill_in 'Título', with: 'Tabule'
     select 'Arabe', from: 'Cozinha'
@@ -41,7 +41,7 @@ feature 'Visitor register recipe' do
     # simula a ação do usuário
     login_as(user)
     visit root_path
-    click_on 'Enviar uma receita'
+    click_on 'Enviar receita'
 
     fill_in 'Título', with: ''
     fill_in 'Dificuldade', with: ''
@@ -61,7 +61,7 @@ feature 'Visitor register recipe' do
     # simula a ação do usuário
     login_as(user)
     visit root_path
-    click_on 'Enviar uma receita'
+    click_on 'Enviar receita'
     fill_in 'Título', with: 'Tabule'
     select 'Arabe', from: 'Cozinha'
     select 'Entrada', from: 'Tipo da Receita'
@@ -85,7 +85,7 @@ feature 'Visitor register recipe' do
 
     login_as(user)
     visit root_path
-    click_on 'Enviar uma receita'
+    click_on 'Enviar receita'
     fill_in 'Título', with: 'Tabule'
     select 'Arabe', from: 'Cozinha'
     select 'Entrada', from: 'Tipo da Receita'
@@ -111,7 +111,7 @@ feature 'Visitor register recipe' do
 
     login_as(user)
     visit root_path
-    click_on 'Enviar uma receita'
+    click_on 'Enviar receita'
     fill_in 'Título', with: 'Tabule'
     select 'Arabe', from: 'Cozinha'
     select 'Entrada', from: 'Tipo da Receita'

@@ -16,4 +16,5 @@ Rails.application.routes.draw do
 
    resources :cuisines, only: [:index, :show, :new, :create, :edit, :update]
    resources :recipe_types, only: [:index, :show, :new, :create, :edit, :update]
+   resources :users, only: [:show,]
 end

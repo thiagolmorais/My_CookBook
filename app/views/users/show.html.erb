@@ -1,0 +1,42 @@
+<div class="container">
+
+  <div class="row">
+
+  <div class="col-md-2">
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><p class="subtitle">Tipo<p></h3>
+      </div>
+      <div class="panel-body">
+        <% @recipe_types.each do |recipe_type| %>
+        <h1 class="paragraph"><%= link_to recipe_type.name, recipe_type_path(recipe_type[:id]) %></h1>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><p class="subtitle">Cozinha<p></h3>
+        </div>
+        <div class="panel-body">
+          <% @cuisines.each do |cuisine| %>
+          <h1 class="paragraph"><%= link_to cuisine.name, cuisine_path(cuisine[:id])%></h1>
+          <% end %>
+        </div>
+      </div>
+  </div>
+
+    <div class="col-md-5" >
+      <div>
+        <h1 class="title">Perfil do Usuário</h1>
+      </div>
+      <div>
+        <p>Nome: <%= @user.username %></p>
+        <p>Cidade: <%= @user.city %></p>
+        <p>Facebook: <%= @user.facebook %></p>
+        <p>Twitter<%= @user.twitter %></p>
+      </div>
+
+    </div>
+  </div>
