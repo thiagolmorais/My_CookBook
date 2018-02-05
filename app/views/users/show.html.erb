@@ -32,11 +32,57 @@
         <h1 class="title">Perfil do Usuário</h1>
       </div>
       <div>
-        <p>Nome: <%= @user.username %></p>
-        <p>Cidade: <%= @user.city %></p>
-        <p>Facebook: <%= @user.facebook %></p>
-        <p>Twitter<%= @user.twitter %></p>
+        <br>
+        <table class="table subtitle">
+        <tr>
+        <td>Nome</td>
+        <td><%= @user.username %></td>
+        </tr>
+        <tr>
+        <td>Cidade</td>
+        <td><%= @user.city %></td>
+        </tr>
+        <tr>
+        <td>Fabebook</td>
+        <td><%= @user.facebook %></td>
+        </tr>
+        <tr>
+        <td>Twitter</td>
+        <td><%= @user.twitter %></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-md-5" >
+      <h1 class="title">Receitas Enviadas</h1>
+      <div>
+      <% @recipes.each do |recipe| %>
+      <% if recipe.user == @user %>
+      <div class="col-md-6">
+        <br>
+          <img><%= image_tag recipe.image.url, width: "130", height: "130" if recipe.image.file? %></img>
+      </div>
+      <div class="col-md-6">
+
+          <h1 class="subtitle">
+            <%= link_to recipe.title, recipe_path(recipe[:id]), class: "more_favorited_recipes" %>
+            <img><%= image_tag "star.png", width: "25", height: "25" if recipe.featured %></img>
+          </h1>
+          <ul>
+            <li>Tipo: <%= recipe.recipe_type.name %></li>
+            <li>Cozinha: <%= recipe.cuisine.name %></li>
+            <li>Dificuldade: <%= recipe.difficulty %></li>
+            <li>Tempo de preparo: <%= recipe.cook_time %> minutos</li>
+          </ul>
+
+
+        </div>
+
+        <% end %>
+    <% end %>
       </div>
 
     </div>
   </div>
+</div>

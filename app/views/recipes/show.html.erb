@@ -34,7 +34,7 @@
     <%= @recipe.title %>
     <img><%= image_tag "star.png", width: "25", height: "25" if @recipe.featured %></img>
   </h1>
-    <p><%= "Enviada por #{@recipe.user.username}" %></p>
+    <p>Enviada por <%= link_to @recipe.user.username, user_path(@recipe.user.id) %></p>
   <h3>Detalhes</h3>
   <p>Tipo: <%= @recipe.recipe_type.name %></p>
 

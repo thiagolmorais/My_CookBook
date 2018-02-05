@@ -5,7 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-user = User.create(username: 'Thiago', email: 'user1@bol.com', password: '123456')
+user = User.create(username: 'Thiago', email: 'user1@bol.com',
+                   password: '123456', city: 'Praia Grande',
+                   facebook: 'https://www.facebook.com/',
+                   twitter: 'https://www.twitter.com/')
 
 brasileira = Cuisine.create(name: 'Brasileira')
 arabe = Cuisine.create(name: 'Arabe')
