@@ -26,25 +26,23 @@ class CuisinesController < ApplicationController
     end
   end
 
-    def edit
-      @cuisine = Cuisine.find(params[:id])
-    end
+  def edit
+    @cuisine = Cuisine.find(params[:id])
+  end
 
-    def update
-      @cuisine = Cuisine.find(params[:id])
-      if cuisine_params.value?('')
-        flash.now[:error] = 'Você deve informar o nome da cozinha'
-        render :edit
-      else
-        if Cuisine.find_by(name: cuisine_params.values)
-          flash.now[:error] = 'A cozinha já está cadastrada'
-          render :edit
-        else
-          @cuisine = Cuisine.update(cuisine_params)
-          redirect_to cuisine_path(Cuisine.last)
-        end
-      end
+  def update
+    @cuisine = Cuisine.find(params[:id])
+    if cuisine_params.value?('')
+      flash.now[:error] = 'Você deve informar o nome da cozinha'
+      render :edit
+    elsif Cuisine.find_by(name: cuisine_params.values)
+      flash.now[:error] = 'A cozinha já está cadastrada'
+      render :edit
+    else
+      @cuisine = Cuisine.update(cuisine_params)
+      redirect_to cuisine_path(Cuisine.last)
     end
+  end
 
   private
 

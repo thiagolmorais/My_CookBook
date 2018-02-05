@@ -6,7 +6,7 @@ class Recipe < ApplicationRecord
 
   belongs_to :cuisine
   belongs_to :recipe_type
-  belongs_to :user, foreign_key: 'user_id'
+  belongs_to :user, foreign_key: :user_id
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
   validates :title, :difficulty, :cook_time, :ingredients, :method,

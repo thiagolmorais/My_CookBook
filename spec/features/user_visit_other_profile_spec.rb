@@ -21,10 +21,14 @@ feature 'User visit other profile' do
     cuisine = create(:cuisine)
     recipe_type = create(:recipe_type)
     user = create(:user)
-    recipe = create(:recipe, title: 'Bolo de Cenoura', user: user, cuisine: cuisine, recipe_type: recipe_type)
-    other_recipe = create(:recipe, title: 'Bolo de maça', user: user, cuisine: cuisine, recipe_type: recipe_type)
+    recipe = create(:recipe, title: 'Bolo de Cenoura', user: user,
+                             cuisine: cuisine, recipe_type: recipe_type)
+    other_recipe = create(:recipe, title: 'Bolo de maça', user: user,
+                                   cuisine: cuisine, recipe_type: recipe_type)
     another_user = create(:user, username: 'Vanessa', email: 'user2@bol.com')
-    another_recipe = create(:recipe, title: 'Bolo de Chocolate',  user: another_user, cuisine: cuisine, recipe_type: recipe_type)
+    another_recipe = create(:recipe, title: 'Bolo de Chocolate',
+                                     user: another_user, cuisine: cuisine,
+                                     recipe_type: recipe_type)
 
     login_as(another_user)
     visit root_path
